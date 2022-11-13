@@ -39,6 +39,7 @@ function RegisterForm() {
           />
         </label>
       </div>
+
       <div>
         <label htmlFor="password">
           Password:
@@ -51,6 +52,18 @@ function RegisterForm() {
           />
         </label>
       </div>
+
+        <div>
+          <label htmlFor = "experience">
+            
+          <input type = "radio" value = "0"></input>
+          <input type = "radio" value = "1"></input>
+          <input type = "radio" value = "2"></input>
+
+          </label>
+        </div>
+
+
       <div>
         <input className="btn" type="submit" name="submit" value="Register" />
       </div>
