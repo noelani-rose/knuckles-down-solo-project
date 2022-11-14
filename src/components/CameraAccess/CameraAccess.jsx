@@ -95,7 +95,7 @@ function CameraAccess () {
             <br/>
             <button id="start-record"onClick = {startRecording}>Start Recording</button>
             {/* <button id="start-record">Start Recording</button> */}
-
+            <br/>
             <button id="stop-record" onClick = {stopRecording}>Stop Recording</button>
             {/* <button id="stop-record" >Stop Recording</button> */}
             <br/>

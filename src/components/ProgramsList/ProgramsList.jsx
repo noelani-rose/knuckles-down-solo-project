@@ -1,14 +1,14 @@
-import {HashRouter as Router, Route} from 'react-router-dom';
-
+import ProgramListItem from "../ProgramListItem/ProgramListItem";
 
 
 function ProgramsList () {
     return (
-        <div>
-        <Route exact path = '/programs'>
-            Program List...
-        </Route>
+         <div>
+             Program List...
+            <ProgramListItem />
+            <button>Select</button>
         </div>
+ 
     )
 }
 

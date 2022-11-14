@@ -7,7 +7,7 @@ import {
 } from 'react-router-dom';
 
 import { useDispatch, useSelector } from 'react-redux';
-
+import ProgramsList from '../ProgramsList/ProgramsList';
 import Nav from '../Nav/Nav';
 import Footer from '../Footer/Footer';
 
@@ -19,6 +19,7 @@ import InfoPage from '../InfoPage/InfoPage';
 import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
+import Journal from '../Journal/Journal';
 
 import './App.css';
 
@@ -36,8 +37,8 @@ function App() {
       <div>
         <Nav />
         <Switch>
-          {/* Visiting localhost:3000 will redirect to localhost:3000/home */}
-          <Redirect exact from="/" to="/home" />
+          {/* Visiting localhost:3000 will redirect to localhost:3000/user */}
+          <Redirect exact from="/" to="/user" />
 
           {/* Visiting localhost:3000/about will show the about page. */}
           <Route
@@ -98,7 +99,8 @@ function App() {
 
           <Route
             exact
-            path="/home"
+            path="/user
+            "
           >
             {user.id ?
               // If the user is already logged in, 
@@ -110,13 +112,27 @@ function App() {
             }
           </Route>
 
+          <Route exact path='/programs'>
+
+            <ProgramsList/>
+  
+             
+          </Route>
+
+
+          <Route exact path = '/journal'>
+            <Journal/>
+          </Route>
+
           {/* If none of the other routes matched, we will show a 404. */}
           <Route>
             <h1>404</h1>
           </Route>
         </Switch>
-        <Footer />
+        {/* <Footer /> */}
       </div>
+
+
     </Router>
   );
 }
