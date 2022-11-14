@@ -9,7 +9,7 @@ function CameraAccess () {
     const constraints = {
         video: true,
         audio: true,
-          acingMode: 'enviornment'
+          facingMode: 'enviornment'
         }
       
       
@@ -36,6 +36,7 @@ function CameraAccess () {
         });
       }
       
+
       
       const stopVideo = () =>{
         let stream = video.srcObject;
@@ -104,8 +105,7 @@ function CameraAccess () {
             <br/>
             <button id = "download">Download</button>
             <br/>
-            <input type = "file" accept='video, image/png, image/jpeg' capture = 
-            "user" />
+            <input type = "file" accept='video, image/png, image/jpeg' capture = "user" />
         </div>
     )
 }

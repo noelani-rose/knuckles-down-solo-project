@@ -30,6 +30,7 @@ function HomePage() {
       <LogOutButton className="btn" />
       <br/>
       <br/>
+
       <Route to = '/programs'>
         <Button variant = 'outlined' onClick = {chooseProgram}>
           Choose a Program
