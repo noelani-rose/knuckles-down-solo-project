@@ -31,11 +31,16 @@ function HomePage() {
       <br/>
       <br/>
 
-      <Route to = '/programs'>
+      {/* <Route to = '/programs'> */}
         <Button variant = 'outlined' onClick = {chooseProgram}>
           Choose a Program
         </Button>
-      </Route>
+      {/* </Route> */}
+
+
+      <Link to = '/my_program'>
+        Start Lifting
+      </Link>
       
       {/* <CameraAccess /> */}
     </div>

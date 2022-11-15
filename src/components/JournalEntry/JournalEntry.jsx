@@ -6,4 +6,4 @@ function JournalEntry () {
     )
 }
 
-export default JournalEntry
+export default JournalEntry;

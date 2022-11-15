@@ -20,6 +20,10 @@ import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
 import Journal from '../Journal/Journal';
+import MyProgram from '../MyProgram/MyProgram';
+import MyProgramWeek from '../MyProgramWeek/MyProgramWeek';
+import MyProgramDay from '../MyProgramDay/MyProgramDay';
+import MyProgramDayItem from '../MyProgramDayItem/MyProgramDayItem';
 
 import './App.css';
 
@@ -113,15 +117,25 @@ function App() {
           </Route>
 
           <Route exact path='/programs'>
-
             <ProgramsList/>
-  
-             
           </Route>
 
 
           <Route exact path = '/journal'>
             <Journal/>
+          </Route>
+
+
+          <Route exact path = '/my_program'>
+            <MyProgram/>
+          </Route>
+
+          <Route exact path = '/my_program_day'>
+            <MyProgramDay />
+          </Route>
+
+          <Route exact path = '/my_program_day'>
+            <MyProgramDayItem />
           </Route>
 
           {/* If none of the other routes matched, we will show a 404. */}
