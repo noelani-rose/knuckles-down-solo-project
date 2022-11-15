@@ -37,6 +37,10 @@ function Nav() {
               Journal
             </Link>
 
+            <Link className = "navLink" to = "/progress">
+              Progress
+            </Link>
+
             <LogOutButton className="navLink" />
           </>
         )}

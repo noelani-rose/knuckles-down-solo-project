@@ -1,16 +1,19 @@
 function Exercises () {
     return (
-       <ul>
-            <li>
-                Exercise
-            </li>
-            <li>
-                Exercise
-            </li>
-            <li>
-                Exercise
-            </li>
-       </ul>
+        <div>
+            Here are the list of exercises
+            <ul>
+                <li>
+                    Exercise
+                </li>
+                <li>
+                    Exercise
+                </li>
+                <li>
+                    Exercise
+                </li>
+            </ul>
+       </div>
     )
 }
 

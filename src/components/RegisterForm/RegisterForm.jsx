@@ -13,6 +13,7 @@ import TextField from '@mui/material/TextField';
 function RegisterForm() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  
   const errors = useSelector((store) => store.errors);
   const dispatch = useDispatch();
 

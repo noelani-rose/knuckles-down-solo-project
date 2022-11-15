@@ -21,10 +21,9 @@ import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
 import Journal from '../Journal/Journal';
 import MyProgram from '../MyProgram/MyProgram';
-import MyProgramWeek from '../MyProgramWeek/MyProgramWeek';
 import MyProgramDay from '../MyProgramDay/MyProgramDay';
-import MyProgramDayItem from '../MyProgramDayItem/MyProgramDayItem';
 import Exercises from '../Exercises/Exercises';
+import Progress from '../Progress/Progress';
 
 import './App.css';
 
@@ -126,6 +125,10 @@ function App() {
             <Journal/>
           </Route>
 
+          <Route exact path = '/progress'>
+            <Progress/>
+          </Route>
+
 
           <Route exact path = '/my_program'>
             <MyProgram/>
@@ -144,7 +147,7 @@ function App() {
             <h1>404</h1>
           </Route>
         </Switch>
-        {/* <Footer /> */}
+        <Footer />
       </div>
 
 
