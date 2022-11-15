@@ -18,13 +18,25 @@ router.get('/', rejectUnauthenticated, (req, res) => {
 // The only thing different from this and every other post we've seen
 // is that the password gets encrypted before being inserted
 router.post('/register', (req, res, next) => {
-  const username = req.body.username;
   const password = encryptLib.encryptPassword(req.body.password);
+  const newUser = req.body
+  const queryValues = [
+    newUser.username,
+    password,
+    newUser.experience,
+    newUser.personalRecords.snatch_pr,
+    newUser.personalRecords.cleanjerk_pr,
+    newUser.personalRecords.frontsquat_pr,
+    newUser.personalRecords.backsquat_pr
+  ]
 
-  const queryText = `INSERT INTO "user" (username, password)
-    VALUES ($1, $2) RETURNING id`;
+  console.log ('req.body is!!!!!!!', newUser)
+
+
+  const queryText = `INSERT INTO "user" (username, password, experience, snatch_pr, cleanjerk_pr, front_squat_pr, back_squat_pr)
+    VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING id`;
   pool
-    .query(queryText, [username, password])
+    .query(queryText, queryValues)
     .then(() => res.sendStatus(201))
     .catch((err) => {
       console.log('User registration failed: ', err);

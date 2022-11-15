@@ -14,7 +14,7 @@ function RegisterForm() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [experience, setExperience] = useState('');
-  const [personalRecords, setPersonalRecords] = useState({snatch_pr: '', cleanjerk_pr: '', fronsquat_pr: '', backsquat_pr: ''})
+  const [personalRecords, setPersonalRecords] = useState({snatch_pr: 0, cleanjerk_pr: 0, frontsquat_pr: 0, backsquat_pr: 0})
   const errors = useSelector((store) => store.errors);
   const dispatch = useDispatch();
 
@@ -23,7 +23,7 @@ function RegisterForm() {
   // console.log(experience)
   console.log(personalRecords.snatch_pr)
   console.log(personalRecords.cleanjerk_pr)
-  console.log(personalRecords.fronsquat_pr)
+  console.log(personalRecords.frontsquat_pr)
   console.log(personalRecords.backsquat_pr)
 
   const registerUser = (event) => {
@@ -113,6 +113,7 @@ function RegisterForm() {
       noValidate
       autoComplete="off"
     >
+      <FormLabel id="experience-level">Current PRs in lbs (optional):</FormLabel><br/>
       <TextField type = "number" id="outlined-basic" label="Snatch" variant="standard" onChange = {(event) => setPersonalRecords({...personalRecords, snatch_pr: event.target.value})}/>
       <TextField type = "number" id="outlined-basic" label="Clean and Jerk" variant="standard" onChange = {(event) => setPersonalRecords({...personalRecords, cleanjerk_pr: event.target.value})} />
       <TextField type = "number" id="outlined-basic" label="Back Squat" variant="standard" onChange = {(event) => setPersonalRecords({...personalRecords, frontsquat_pr: event.target.value})}/>

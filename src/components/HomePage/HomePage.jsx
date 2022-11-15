@@ -26,6 +26,7 @@ function HomePage() {
     <div className="container">
       <h2>Welcome, {user.username}!</h2>
       <p>Your ID is: {user.id}</p>
+      <p>Your experience level is: {user.experience}</p>
 
       <LogOutButton className="btn" />
       <br/>
