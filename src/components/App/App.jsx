@@ -24,6 +24,7 @@ import MyProgram from '../MyProgram/MyProgram';
 import MyProgramWeek from '../MyProgramWeek/MyProgramWeek';
 import MyProgramDay from '../MyProgramDay/MyProgramDay';
 import MyProgramDayItem from '../MyProgramDayItem/MyProgramDayItem';
+import Exercises from '../Exercises/Exercises';
 
 import './App.css';
 
@@ -130,12 +131,12 @@ function App() {
             <MyProgram/>
           </Route>
 
-          <Route exact path = '/my_program_day'>
+          <Route exact path = '/days'>
             <MyProgramDay />
           </Route>
 
-          <Route exact path = '/my_program_day'>
-            <MyProgramDayItem />
+          <Route exact path = '/exercises'>
+            <Exercises />
           </Route>
 
           {/* If none of the other routes matched, we will show a 404. */}

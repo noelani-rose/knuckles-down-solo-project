@@ -12,7 +12,8 @@ function MyProgramDay () {
     return (
         <div>
             Here are the list of days 
-            <Link to = '/my_program_day'>
+
+            <Link to = '/exercises'>
                 <MyProgramDayItem />
             </Link>
         </div>

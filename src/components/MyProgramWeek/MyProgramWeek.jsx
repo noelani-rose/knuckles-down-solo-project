@@ -12,10 +12,8 @@ import MyProgramDay from '../MyProgramDay/MyProgramDay';
 function MyProgramWeek () {
     return (
         <div>
-            Here are the program weeks
-            {/* <MyProgramWeekItem/> */}
-            {/* <MyProgramDay /> */}
-          
+                Here are the program weeks
+                <MyProgramWeekItem/>
             
         </div>
     )
