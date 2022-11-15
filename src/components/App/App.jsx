@@ -24,7 +24,6 @@ import MyProgram from '../MyProgram/MyProgram';
 import MyProgramDay from '../MyProgramDay/MyProgramDay';
 import Exercises from '../Exercises/Exercises';
 import Progress from '../Progress/Progress';
-
 import './App.css';
 
 function App() {
