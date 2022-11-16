@@ -5,22 +5,47 @@ import {
     Switch,
     Link
   } from 'react-router-dom';
+  import { useEffect } from 'react';
+  import { useDispatch, useSelector } from 'react-redux';
 
-import MyProgramDay from '../MyProgramDay/MyProgramDay';
+
 
 
 function MyProgramWeekItem () {
+    const dispatch = useDispatch();
+    const weeks = useSelector(store => store.exercises)
+    // console.log('what is in the store', weeks)
+
+
+    useEffect(() => {
+        dispatch({
+            type: 'FETCH_PROGRAM_WEEKS'
+        })
+    },[])
+
+
+
+    const duplicate = weeks => {
+        const res = [];
+        for (let i = 0; i < weeks.length; i++){
+            if (weeks.indexOf(weeks[i]) !== weeks.lastIndexOf(weeks[i])){
+                if(!res.includes(weeks[i])){
+                    res.push(weeks[i])
+                }
+            }
+        }
+        return res;
+    }
+    console.log(duplicate(weeks))
+
     return (
         <div>
             <Link id="RouterNavLink" to = '/days'>
-                Week 1
+                {weeks.map(week => (
+                    <div key = {week.id}>{week.week}</div>
+                ))}
+                <div></div>
             </Link><br/>
-            <Link id="RouterNavLink" to = '/days'>
-                Week 2
-            </Link><br/>
-            <Link id="RouterNavLink" to = '/days'>
-                Week 3
-            </Link>
             
         </div>
     )
