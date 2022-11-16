@@ -6,6 +6,8 @@ const userReducer = (state = {}, action) => {
       return {};
     default:
       return state;
+    case 'SET_USER_PROGRAM':
+      return action.payload
   }
 };
 

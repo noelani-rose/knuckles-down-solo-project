@@ -25,7 +25,7 @@ router.get('/', (req, res) => {
   pool.query(queryText)
   .then(dbResult => {
     res.send(dbResult.rows)
-    console.log('what is the result from exercises db', dbResult.rows)
+    // console.log('what is the result from exercises db', dbResult.rows)
   })
   .catch(error => {
     console.log('error getting all programs', error)

@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import LogOutButton from '../LogOutButton/LogOutButton';
 import {useSelector} from 'react-redux';
 import { Button } from '@mui/material';
-import CameraAccess from '../CameraAccess/CameraAccess';
+// import CameraAccess from '../CameraAccess/CameraAccess';
 import { useHistory } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import {HashRouter as Router, Route} from 'react-router-dom';
@@ -20,12 +20,20 @@ function HomePage() {
     history.push('/programs')
   }
 
+
   const personalRecords = [
-  'Snatch:' + user.snatch_pr,
-  'Clean and Jerk:' + user.cleanjerk_pr,
-  'Front Squat:' + user.front_squat_pr,
-  'Back Squat:' + user.back_squat_pr
+    'Snatch:' + user.snatch_pr,
+    'Clean and Jerk:' + user.cleanjerk_pr,
+    'Front Squat:' + user.front_squat_pr,
+    'Back Squat:' + user.back_squat_pr
   ]
+
+
+  // useEffect(() => {
+  //   dispatchEvent({
+  //     type: 'FETCH_USER_PROGRAM'
+  //   })
+  // }, [])
   
 
   return (

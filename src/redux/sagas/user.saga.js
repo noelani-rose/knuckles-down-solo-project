@@ -26,13 +26,14 @@ function* fetchUser() {
 
 
 function* addUserProgram (action) {
+  console.log('in the adduserprogram function', action.payload)
   try{
-    const config = {
-      headers: { 'Content-Type': 'application/json' },
-      withCredentials: true,
-    };
+    // const config = {
+    //   headers: { 'Content-Type': 'application/json' },
+    //   withCredentials: true,
+    // };
 
-    yield axios.post('/api/user', config, {data: action.payload});
+    yield axios.post(`/api/user/`, {data: action.payload});
 
     yield put({
       type: 'FETCH_USER_PROGRAM'
@@ -42,9 +43,26 @@ function* addUserProgram (action) {
   }
 }
 
+
+function* fetchUserProgram () {
+  console.log('in fetch user program function')
+  
+  try{
+    const response = yield axios.get('/api/user');
+
+    yield put({
+      type: 'SET_USER_PROGRAM',
+      payload: response.data
+    })
+  } catch (error) {
+    console.log('error getting user program back from server', )
+  }
+}
+
 function* userSaga() {
   yield takeLatest('FETCH_USER', fetchUser);
   yield takeLatest('ADD_USER_PROGRAM', addUserProgram)
+  yield takeLatest('FETCH_USER_PROGRAM', fetchUserProgram)
 }
 
 export default userSaga;

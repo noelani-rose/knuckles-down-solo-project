@@ -44,6 +44,60 @@ router.post('/register', (req, res, next) => {
     });
 });
 
+
+
+router.post('/', rejectUnauthenticated, (req, res) => {
+  const programId = req.body.data;
+
+  const currentUser = req.user;
+  ('what is req.user??', currentUser)
+  console.log('the program id being posted is to server is', programId)
+
+  const queryText = `
+  INSERT INTO "user_programs" 
+  ("user_id", "programs_id")
+  VALUES ($1, $2);`;
+
+  const sqlParams = [currentUser.id, programId]
+
+  pool.query(queryText, sqlParams)
+  .then((dbResult) => {
+    res.sendStatus(200);
+    consolelog('program id added to user_programs')
+  })
+  .catch((error) => {
+    res.sendStatus(500);
+    console.log('post program id to user_programs failed', error)
+  })
+})
+
+router.get('/', (req, res) => {
+  const userId = [req.user.id]
+  const sqlText = `
+  SELECT "programs_id"
+  FROM "user_programs"
+  WHERE "user_id" = $1;`;
+
+  pool.query(sqlText, userId)
+  .then((dbResult) => {
+    console.log('what program id am i getting back from the user_programs table?', dbResult.rows)
+    res.send(dbResult.rows)
+  })
+  .catch((error) => {
+    console.log('error getting program id back from user_programs', error)
+  })
+
+})
+
+
+
+
+
+
+
+
+
+
 // Handles login form authenticate/login POST
 // userStrategy.authenticate('local') is middleware that we run on this route
 // this middleware will run our POST if successful

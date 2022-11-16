@@ -18,7 +18,6 @@ function ProgramsList () {
          <div>
              Program List...
             <ProgramListItem />
-            <button>Select</button>
         </div>
  
     )

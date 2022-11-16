@@ -5,9 +5,13 @@ import {
     Switch,
     Link
   } from 'react-router-dom';
+import { useEffect } from 'react';
 
 
 import MyProgramWeek from "../MyProgramWeek/MyProgramWeek";
+
+
+
 
 function MyProgram () {
     return (
