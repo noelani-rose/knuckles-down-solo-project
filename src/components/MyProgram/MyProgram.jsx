@@ -13,9 +13,9 @@ function MyProgram () {
     return (
         <div>
             Here is my current program
-            {/* <Link to = '/my_program_week'> */}
+
                 <MyProgramWeek />
-            {/* </Link> */}
+            
             
         </div>
     )

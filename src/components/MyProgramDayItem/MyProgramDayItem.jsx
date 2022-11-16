@@ -1,18 +1,12 @@
-import {
-    HashRouter as Router,
-    Redirect,
-    Route,
-    Switch,
-    Link
-  } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 
 function MyProgramDayItem () {
     return (
         <div>
-            <Link to = '/exercises'>Day 1</Link><br/>
-            <Link to = '/exercises'>Day 2</Link><br/>
-            <Link to = '/exercises'>Day 3</Link><br/>
+            <Link id="RouterNavLink" to = '/exercises'>Day 1</Link><br/>
+            <Link id="RouterNavLink" to = '/exercises'>Day 2</Link><br/>
+            <Link id="RouterNavLink" to = '/exercises'>Day 3</Link><br/>
         </div>
     )
 }

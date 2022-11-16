@@ -13,7 +13,7 @@ function MyProgramDay () {
         <div>
             Here are the list of days 
 
-            <Link to = '/exercises'>
+            <Link id="RouterNavLink" to = '/exercises'>
                 <MyProgramDayItem />
             </Link>
         </div>
