@@ -20,12 +20,29 @@ function HomePage() {
     history.push('/programs')
   }
 
+  const personalRecords = [
+  'Snatch:' + user.snatch_pr,
+  'Clean and Jerk:' + user.cleanjerk_pr,
+  'Front Squat:' + user.front_squat_pr,
+  'Back Squat:' + user.back_squat_pr
+  ]
+  
 
   return (
 
     <div className="container">
       <h2>Welcome, {user.username}!</h2>
       <p>Your ID is: {user.id}</p>
+      <p>Your experience level is: {user.experience}</p>
+      {/* <ul> */}
+        Your personsonal records are: 
+        <ul>
+          {personalRecords.map(pr => (
+            <li key = {pr}>
+              {pr}
+            </li>
+          ))}
+        </ul>
 
       <LogOutButton className="btn" />
       <br/>

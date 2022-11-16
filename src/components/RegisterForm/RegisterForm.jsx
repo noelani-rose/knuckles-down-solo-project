@@ -13,21 +13,47 @@ import TextField from '@mui/material/TextField';
 function RegisterForm() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  
+  const [experience, setExperience] = useState('');
+  const [personalRecords, setPersonalRecords] = useState({snatch_pr: 0, cleanjerk_pr: 0, frontsquat_pr: 0, backsquat_pr: 0})
   const errors = useSelector((store) => store.errors);
   const dispatch = useDispatch();
+
+  // console.log(username)
+  // console.log(password)
+  // console.log(experience)
+  console.log(personalRecords.snatch_pr)
+  console.log(personalRecords.cleanjerk_pr)
+  console.log(personalRecords.frontsquat_pr)
+  console.log(personalRecords.backsquat_pr)
 
   const registerUser = (event) => {
     event.preventDefault();
 
+    const userToAdd = {
+      username: username,
+      password, password, 
+      experience: experience,
+      personalRecords: personalRecords
+    }
+
+
+
     dispatch({
       type: 'REGISTER',
-      payload: {
-        username: username,
-        password: password,
-      },
+      payload: userToAdd
     });
   }; // end registerUser
+
+  // dispatch({
+  //   type: 'REGISTER',
+  //   payload: {
+  //     username: username,
+  //     password: password,
+  //     experience: experience,
+  //     personalRecords: personalRecords
+  //   },
+
+  
 
   return (
     <form className="formPanel" onSubmit={registerUser}>
@@ -65,11 +91,12 @@ function RegisterForm() {
 
         <div>
       <FormControl>
-      <FormLabel id="experience-level">Experience Level</FormLabel>
+      <FormLabel id="experience-level">Experience Level:</FormLabel>
       <RadioGroup
         row
         aria-labelledby="demo-row-radio-buttons-group-label"
         name="row-radio-buttons-group" 
+        onChange = {(event) => setExperience(event.target.value)}
       >
         <FormControlLabel value="0" control={<Radio />} label="Beginner" />
         <FormControlLabel value="1" control={<Radio />} label="Intermediate" />
@@ -81,15 +108,16 @@ function RegisterForm() {
       <Box
       component="form"
       sx={{
-        '& > :not(style)': { m: 0.5, width: '10ch', height: '10ch' },
+        '& > :not(style)': { m: 0.5, width: '15ch', height: '10ch' },
       }}
       noValidate
       autoComplete="off"
     >
-      <TextField id="outlined-basic" label="Snatch" variant="standard" />
-      <TextField id="outlined-basic" label="Clean and Jerk" variant="standard" />
-      <TextField id="outlined-basic" label="Back Squat" variant="standard" />
-      <TextField id="outlined-basic" label="Front Squat" variant="standard" />
+      <FormLabel id="experience-level">Current PRs in lbs (optional):</FormLabel><br/>
+      <TextField type = "number" id="outlined-basic" label="Snatch" variant="standard" onChange = {(event) => setPersonalRecords({...personalRecords, snatch_pr: event.target.value})}/>
+      <TextField type = "number" id="outlined-basic" label="Clean and Jerk" variant="standard" onChange = {(event) => setPersonalRecords({...personalRecords, cleanjerk_pr: event.target.value})} />
+      <TextField type = "number" id="outlined-basic" label="Back Squat" variant="standard" onChange = {(event) => setPersonalRecords({...personalRecords, frontsquat_pr: event.target.value})}/>
+      <TextField type = "number" id="outlined-basic" label="Front Squat" variant="standard" onChange = {(event) => setPersonalRecords({...personalRecords, backsquat_pr: event.target.value})}/>
 
 
     </Box>

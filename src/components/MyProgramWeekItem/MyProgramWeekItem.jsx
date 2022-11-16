@@ -12,13 +12,13 @@ import MyProgramDay from '../MyProgramDay/MyProgramDay';
 function MyProgramWeekItem () {
     return (
         <div>
-            <Link to = '/days'>
+            <Link id="RouterNavLink" to = '/days'>
                 Week 1
             </Link><br/>
-            <Link to = '/days'>
+            <Link id="RouterNavLink" to = '/days'>
                 Week 2
             </Link><br/>
-            <Link to = '/days'>
+            <Link id="RouterNavLink" to = '/days'>
                 Week 3
             </Link>
             
