@@ -48,11 +48,11 @@ function HomePage() {
       <br/>
       <br/>
 
-      {/* <Route to = '/programs'> */}
+      
         <Button variant = 'outlined' onClick = {chooseProgram}>
           Choose a Program
         </Button>
-      {/* </Route> */}
+      
 
 
       <Link to = '/my_program'>

@@ -7,12 +7,11 @@ const router = express.Router();
  */
 router.get('/', (req, res) => {
   // GET route code here
-  const queryText = `SELECT * FROM "programs ORDER BY "id" ASC`;
+  const queryText = `SELECT * FROM "programs" ORDER BY "id" ASC`;
 
   pool.query(queryText)
   .then(dbResult => {
     res.send(dbResult.rows)
-    console.log('what is the result from programs db?', dbResult.rows)
   })
   .catch(error => {
     console.log('error getting all programs', error)
