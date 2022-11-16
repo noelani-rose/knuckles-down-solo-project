@@ -14,7 +14,7 @@ function RegisterForm() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [experience, setExperience] = useState('');
-  const [personalRecords, setPersonalRecords] = useState({snatch_pr: 0, cleanjerk_pr: 0, frontsquat_pr: 0, backsquat_pr: 0})
+  const [personalRecords, setPersonalRecords] = useState({snatch_pr: '', cleanjerk_pr: 0, frontsquat_pr: 0, backsquat_pr: 0})
   const errors = useSelector((store) => store.errors);
   const dispatch = useDispatch();
 

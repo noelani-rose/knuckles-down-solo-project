@@ -24,8 +24,27 @@ function* fetchUser() {
   }
 }
 
+
+function* addUserProgram (action) {
+  try{
+    const config = {
+      headers: { 'Content-Type': 'application/json' },
+      withCredentials: true,
+    };
+
+    yield axios.post('/api/user', config, {data: action.payload});
+
+    yield put({
+      type: 'FETCH_USER_PROGRAM'
+    })
+  } catch (error) {
+    console.log('User post user_program_id', error)
+  }
+}
+
 function* userSaga() {
   yield takeLatest('FETCH_USER', fetchUser);
+  yield takeLatest('ADD_USER_PROGRAM', addUserProgram)
 }
 
 export default userSaga;
