@@ -28,12 +28,12 @@ function* fetchUser() {
 function* addUserProgram (action) {
   console.log('in the adduserprogram function', action.payload)
   try{
-    // const config = {
-    //   headers: { 'Content-Type': 'application/json' },
-    //   withCredentials: true,
-    // };
+    const config = {
+      headers: { 'Content-Type': 'application/json' },
+      withCredentials: true,
+    };
 
-    yield axios.post(`/api/user/`, {data: action.payload});
+    yield axios.post(`/api/user/`, {data: action.payload}, config);
 
     yield put({
       type: 'FETCH_USER_PROGRAM'
@@ -60,28 +60,10 @@ function* fetchUserProgram () {
 }
 
 
-function* fetchProgramWeeks(action) {
-  console.log('in fetchPrograms function in program.saga with action:', action.payload)
-try {
-  const config = {
-    headers: { 'Content-Type': 'application/json' },
-    withCredentials: true,
-  };
-
-  const response = yield axios.get(`/api/user/${action.payload}`, config);
-  // console.log('what is the response', response.data)
-
-  yield put({ type: 'SET_PROGRAM_WEEKS', payload: response.data });
-} catch (error) {
-  console.log('User get request failed', error);
-}
-}
-
 function* userSaga() {
   yield takeLatest('FETCH_USER', fetchUser);
   yield takeLatest('ADD_USER_PROGRAM', addUserProgram)
   yield takeLatest('FETCH_USER_PROGRAM', fetchUserProgram)  
-  yield takeLatest('FETCH_PROGRAM_WEEKS', fetchProgramWeeks);
 
 }
 

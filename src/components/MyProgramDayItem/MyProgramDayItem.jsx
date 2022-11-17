@@ -4,10 +4,15 @@ import { useDispatch, useSelector } from 'react-redux'
 
 
 function MyProgramDayItem () {
-    const days = useSelector(store => store.user)
-    console.log('what is in the store', days)
+    const dispatch = useDispatch()
+    const days = useSelector(store => store.userProgram)
+    console.log('what is in the store for my days', days)
 
-    
+    useEffect(() => {
+        dispatch({
+            type: 'FETCH_PROGRAM_DAYS'
+        })
+    }, [])
 
 
     return (

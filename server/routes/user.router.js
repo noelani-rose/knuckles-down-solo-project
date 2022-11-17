@@ -75,26 +75,18 @@ router.post('/', rejectUnauthenticated, (req, res) => {
 
 
 router.get('/:week', (req, res) => {
-  console.log('I AM IN THE ROUTER GET FUNCTION TO GET PROGRAM ID')
+  console.log('I AM IN THE ROUTER GET FUNCTION TO GET PROGRAM WEEKS')
   const userId = [req.user.id]
   console.log('what is the userid when getting program id', userId)
   const sqlText = 
-
-  `
-SELECT 
-"programs"."name", "programs".days_per_week, "programs".intensity, "programs".volume, "programs".good_for, "programs_exercises".week 
-FROM "programs"
-JOIN "programs_exercises" ON "programs_exercises"."program_id" = "programs"."id"
-GROUP BY "programs"."name", "programs".days_per_week, "programs".intensity, "programs".volume, "programs".good_for, "programs_exercises".week 
-ORDER BY "programs_exercises"."week";
-`;
-
- 
-  // `
-  // SELECT "programs_id"
-  // FROM "user_programs"
-  // WHERE "user_id" = $1;`;
-
+`
+  SELECT 
+  "programs"."name", "programs".days_per_week, "programs".intensity, "programs".volume, "programs".good_for, "programs_exercises".week 
+  FROM "programs"
+  JOIN "programs_exercises" ON "programs_exercises"."program_id" = "programs"."id"
+  GROUP BY "programs"."name", "programs".days_per_week, "programs".intensity, "programs".volume, "programs".good_for, "programs_exercises".week 
+  ORDER BY "programs_exercises"."week";
+  `;
 
   pool.query(sqlText)
   .then((dbResult) => {
@@ -102,10 +94,37 @@ ORDER BY "programs_exercises"."week";
     res.send(dbResult.rows)
   })
   .catch((error) => {
-    console.log('error getting program id back from user_programs', error)
+    console.log('error getting program weeks back from db', error)
   })
 
 })
+
+router.get('/week/:day', (req, res) => {
+  console.log('I AM IN THE ROUTER TO GET PROGRAM DAYS')
+
+  const sqlText = 
+  `
+  SELECT 
+  "programs"."name", "programs_exercises".week, "user_programs"."user_id", "programs_exercises"."day"
+  FROM "programs"
+  JOIN "programs_exercises" ON "programs_exercises"."program_id" = "programs"."id"
+  JOIN "user_programs" ON "user_programs".programs_id = "programs"."id"
+  GROUP BY "programs"."name", "programs_exercises".week, "user_programs"."user_id", "programs_exercises"."day" 
+  ORDER BY "programs_exercises"."week"
+  `;
+
+  pool.query(sqlText)
+  .then((dbResult) => {
+    console.log('whats the result when trying to get back days', dbResult.rows)
+    res.send(dbResult.rows)
+  })
+  .catch((error) => {
+    console.log('error getting days back from db', error)
+    res.sendStatus(500)
+  })
+})
+
+
 
 
 
