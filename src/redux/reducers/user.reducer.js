@@ -1,4 +1,4 @@
-const userReducer = (state = {}, action) => {
+const userReducer = (state = {week: []}, action) => {
   switch (action.type) {
     case 'SET_USER':
       return action.payload;
@@ -7,9 +7,7 @@ const userReducer = (state = {}, action) => {
     case 'SET_USER_PROGRAM':
       return action.payload
     default:
-      return state;
-
-      
+      return state;    
   }
 };
 

@@ -129,7 +129,7 @@ function App() {
           </Route>
 
 
-          <Route exact path = '/my_program'>
+          <Route exact path = '/my_program/'>
             <MyProgram/>
           </Route>
 

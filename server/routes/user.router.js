@@ -72,39 +72,31 @@ router.post('/', rejectUnauthenticated, (req, res) => {
   })
 })
 
-router.get('/program', (req, res) => {
+
+
+router.get('/:week', (req, res) => {
   console.log('I AM IN THE ROUTER GET FUNCTION TO GET PROGRAM ID')
   const userId = [req.user.id]
   console.log('what is the userid when getting program id', userId)
   const sqlText = 
-  `SELECT 
-  JSON_AGG("exercises") as exercises,
-  "programs_exercises"."week",
-  "programs_exercises"."day",
-  "user_programs"."user_id",
-  "user_programs"."programs_id"
-  FROM
-  "programs"
-  LEFT JOIN "programs_exercises" ON "programs_exercises"."program_id" = "programs"."id"
-  LEFT JOIN "exercises" ON "programs_exercises"."exercise_id" = "exercises"."id"
-  LEFT JOIN "user_programs" ON "user_programs"."programs_id" = "programs"."id"
-  WHERE "user_programs"."user_id" = $1
-  GROUP BY "programs"."id", "programs_exercises"."week",
-  "programs_exercises"."day", "user_programs"."user_id",
-  "user_programs"."programs_id"
-  ORDER BY "week", "day"
-  ;`
-  
-  
-  
-  
+
+  `
+SELECT 
+"programs"."name", "programs".days_per_week, "programs".intensity, "programs".volume, "programs".good_for, "programs_exercises".week 
+FROM "programs"
+JOIN "programs_exercises" ON "programs_exercises"."program_id" = "programs"."id"
+GROUP BY "programs"."name", "programs".days_per_week, "programs".intensity, "programs".volume, "programs".good_for, "programs_exercises".week 
+ORDER BY "programs_exercises"."week";
+`;
+
+ 
   // `
   // SELECT "programs_id"
   // FROM "user_programs"
   // WHERE "user_id" = $1;`;
 
 
-  pool.query(sqlText, userId)
+  pool.query(sqlText)
   .then((dbResult) => {
     console.log('what program info am i getting back from the user_programs table?', dbResult.rows)
     res.send(dbResult.rows)

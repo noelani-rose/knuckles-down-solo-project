@@ -59,10 +59,30 @@ function* fetchUserProgram () {
   }
 }
 
+
+function* fetchProgramWeeks(action) {
+  console.log('in fetchPrograms function in program.saga with action:', action.payload)
+try {
+  const config = {
+    headers: { 'Content-Type': 'application/json' },
+    withCredentials: true,
+  };
+
+  const response = yield axios.get(`/api/user/${action.payload}`, config);
+  // console.log('what is the response', response.data)
+
+  yield put({ type: 'SET_PROGRAM_WEEKS', payload: response.data });
+} catch (error) {
+  console.log('User get request failed', error);
+}
+}
+
 function* userSaga() {
   yield takeLatest('FETCH_USER', fetchUser);
   yield takeLatest('ADD_USER_PROGRAM', addUserProgram)
-  yield takeLatest('FETCH_USER_PROGRAM', fetchUserProgram)
+  yield takeLatest('FETCH_USER_PROGRAM', fetchUserProgram)  
+  yield takeLatest('FETCH_PROGRAM_WEEKS', fetchProgramWeeks);
+
 }
 
 export default userSaga;

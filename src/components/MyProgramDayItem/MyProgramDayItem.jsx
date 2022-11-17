@@ -7,14 +7,15 @@ function MyProgramDayItem () {
     const days = useSelector(store => store.user)
     console.log('what is in the store', days)
 
+    
 
 
     return (
         <div>
             <Link id="RouterNavLink" to = '/exercises'>
-                {days.map(day => (
+                {/* {days.map(day => (
                     <div key = {day.exercises.id}>{day.day}</div>
-                ))}
+                ))} */}
             </Link><br/>
         </div>
     )

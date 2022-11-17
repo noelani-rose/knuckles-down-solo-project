@@ -3,6 +3,7 @@ import errors from './errors.reducer';
 import user from './user.reducer';
 import program from './program.reducer'
 import exercises from './exercises.reducer'
+import userProgram from './user.programs.reducer'
 
 
 // rootReducer is the primary reducer for our entire project
@@ -16,7 +17,7 @@ const rootReducer = combineReducers({
   user, // will have an id and username if someone is logged in
   program,
   exercises,
-
+  userProgram
 });
 
 export default rootReducer;
