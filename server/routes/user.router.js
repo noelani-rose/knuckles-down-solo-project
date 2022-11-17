@@ -48,9 +48,10 @@ router.post('/register', (req, res, next) => {
 
 router.post('/', rejectUnauthenticated, (req, res) => {
   const programId = req.body.data;
+  // console.log('req.user.id is', req.user)
 
   const currentUser = req.user;
-  ('what is req.user??', currentUser)
+  console.log('what is req.user??', currentUser.id);
   console.log('the program id being posted is to server is', programId)
 
   const queryText = `
@@ -71,8 +72,10 @@ router.post('/', rejectUnauthenticated, (req, res) => {
   })
 })
 
-router.get('/', (req, res) => {
+router.get('/:id', (req, res) => {
+  console.log('I AM IN THE ROUTER GET FUNCTION TO GET PROGRAM ID')
   const userId = [req.user.id]
+  console.log('what is the userid when getting program id', userId)
   const sqlText = `
   SELECT "programs_id"
   FROM "user_programs"

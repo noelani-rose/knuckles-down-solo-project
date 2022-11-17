@@ -24,20 +24,6 @@ function MyProgramWeekItem () {
     },[])
 
 
-
-    const duplicate = weeks => {
-        const res = [];
-        for (let i = 0; i < weeks.length; i++){
-            if (weeks.indexOf(weeks[i]) !== weeks.lastIndexOf(weeks[i])){
-                if(!res.includes(weeks[i])){
-                    res.push(weeks[i])
-                }
-            }
-        }
-        return res;
-    }
-    console.log(duplicate(weeks))
-
     return (
         <div>
             <Link id="RouterNavLink" to = '/days'>

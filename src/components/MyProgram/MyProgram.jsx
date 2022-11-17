@@ -6,14 +6,33 @@ import {
     Link
   } from 'react-router-dom';
 import { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { useParams, useHistory } from 'react-router-dom';
+
+
 
 
 import MyProgramWeek from "../MyProgramWeek/MyProgramWeek";
-
+// import { ParameterStatusMessage } from 'pg-protocol/dist/messages';
 
 
 
 function MyProgram () {
+    const dispatch = useDispatch();
+    const params = useParams();
+
+    useEffect(() => {
+        console.log('in use effect to fetch user program')
+        dispatch({
+            type: 'FETCH_USER_PROGRAM',
+            payload: params.id
+        })
+        console.log('what even is params.id', params.id)
+    }, [params.id])
+
+
+
+
     return (
         <div>
             Here is my current program

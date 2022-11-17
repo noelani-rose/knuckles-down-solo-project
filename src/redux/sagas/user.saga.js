@@ -44,12 +44,12 @@ function* addUserProgram (action) {
 }
 
 
-function* fetchUserProgram () {
-  console.log('in fetch user program function')
+function* fetchUserProgram (action) {
+  console.log('in fetch user program function with a payload of', action.payload)
   
   try{
-    const response = yield axios.get('/api/user');
-
+    const response = yield axios.get(`/api/user/${action.payload}`);
+    console.log('am i gettin a response from the server', response)
     yield put({
       type: 'SET_USER_PROGRAM',
       payload: response.data
