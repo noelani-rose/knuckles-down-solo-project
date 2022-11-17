@@ -13,8 +13,9 @@ import {
 
 function MyProgramWeekItem () {
     const dispatch = useDispatch();
-    const weeks = useSelector(store => store.exercises)
-    // console.log('what is in the store', weeks)
+    const weeks = useSelector(store => store.user)
+    console.log('what is in the store', weeks)
+    // console.log('show me the weeks in this data', weeks[0].week)
 
 
     useEffect(() => {
@@ -26,9 +27,10 @@ function MyProgramWeekItem () {
 
     return (
         <div>
+
             <Link id="RouterNavLink" to = '/days'>
                 {weeks.map(week => (
-                    <div key = {week.id}>{week.week}</div>
+                    <div key = {week.exercises.id}>{week.week}</div>
                 ))}
                 <div></div>
             </Link><br/>

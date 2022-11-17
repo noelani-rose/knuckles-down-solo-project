@@ -1,15 +1,10 @@
-import {
-    HashRouter as Router,
-    Redirect,
-    Route,
-    Switch,
-    Link
-  } from 'react-router-dom';
 import MyProgramWeekItem from '../MyProgramWeekItem/MyProgramWeekItem';
-import MyProgramDay from '../MyProgramDay/MyProgramDay';
-
+import { useSelector } from 'react-redux';
 
 function MyProgramWeek () {
+
+    // const weeks = useSelector(store => store.user)
+    // console.log('what is weeks', weeks)
     return (
         <div>
                 Here are the program weeks

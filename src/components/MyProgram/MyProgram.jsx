@@ -13,21 +13,21 @@ import { useParams, useHistory } from 'react-router-dom';
 
 
 import MyProgramWeek from "../MyProgramWeek/MyProgramWeek";
-// import { ParameterStatusMessage } from 'pg-protocol/dist/messages';
-
 
 
 function MyProgram () {
     const dispatch = useDispatch();
     const params = useParams();
+    // const weeks = useSelector(store => store.user)
+    // console.log('what is weeks', weeks)
 
     useEffect(() => {
         console.log('in use effect to fetch user program')
         dispatch({
-            type: 'FETCH_USER_PROGRAM',
-            payload: params.id
+            type: 'FETCH_USER_PROGRAM', // trying to get all exercises for that user's program
+            // payload: params.id
         })
-        console.log('what even is params.id', params.id)
+        // console.log('what even is params.id', params.id)
     }, [params.id])
 
 

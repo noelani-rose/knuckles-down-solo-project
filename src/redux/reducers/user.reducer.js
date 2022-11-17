@@ -4,13 +4,17 @@ const userReducer = (state = {}, action) => {
       return action.payload;
     case 'UNSET_USER':
       return {};
-    default:
-      return state;
     case 'SET_USER_PROGRAM':
       return action.payload
+    default:
+      return state;
+
+      
   }
 };
 
+
 // user will be on the redux state at:
 // state.user
+
 export default userReducer;

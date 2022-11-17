@@ -21,24 +21,7 @@ function ProgramListItem () {
     const dispatch = useDispatch();
     const [programId, setProgramId] = useState()
     const [open, setOpen] = useState(false);
-    // const [state, setState] = useState({
-    //     alertOpen: false,
-    //     vertical: 'top',
-    //     horizontal: 'center',
-    //   });
-    // const { vertical, horizontal, alertOpen } = state;
 
-
-    // const handleAlertClick = (newState) => () => {
-    //     setState({ alertOpen: true, ...newState });
-    //   };
-
-    // const handleAlertClose = () => {
-    //     setState({ ...state, alertOpen: false });
-    //   };
-
-    
-    
     const handleClickOpen = (id) => {
         setOpen(true);
         console.log('opening confirmation for program with id', id)
@@ -70,16 +53,6 @@ function ProgramListItem () {
     
     return(
 <>
-
-
-{/* 
-        <Snackbar
-            anchorOrigin={{ vertical, horizontal }}
-            alertOpen={alertOpen}
-            onClose={handleAlertClose}
-            message="Program Added!"
-            key={vertical + horizontal}
-        /> */}
 
 
 
