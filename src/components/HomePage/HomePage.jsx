@@ -49,13 +49,14 @@ function HomePage() {
     currentProgram = []
 }
 
+
   return (
 
     <div className="container">
       <h2>Welcome, {user.username}!</h2>
       <p>Your ID is: {user.id}</p>
-      <p>Your Program is: {currentProgram[0].name}</p>
-      <p>This programs Experience Level is: {currentProgram[0].experience_level}</p>
+      {/* <p>Your Program is: {currentProgram[0].name}</p> */}
+      {/* <p>This programs Experience Level is: {currentProgram[0].experience_level}</p> */}
       <p>Your experience level is: {user.experience}</p>
       {/* <ul> */}
         Your personsonal records are: 
@@ -71,18 +72,30 @@ function HomePage() {
       <br/>
       <br/>
 
-      
-        <Button variant = 'outlined' onClick = {chooseProgram}>
-          Choose a Program
-        </Button>
-      
 
-        <Button variant = 'oulined'>
+      {/* {currentProgram ?
+      <Button variant = 'oulined'>
+          <Link to = {`/program/${currentProgram[0].programs_id}`}>
+          <Link to = {`/program/:id`}>
+              Start Lifting
+          </Link>
+      </Button>
+        : 
+      <Button variant = 'outlined' onClick = {chooseProgram}>
+        Choose a Program
+      </Button>
+
+      } */}
+      
+      <Button variant = 'outlined' onClick = {chooseProgram}>
+        Choose a Program
+      </Button>
+         <Button variant = 'oulined'> 
         {/* <Link to = {`/program/${currentProgram[0].programs_id}`}> */}
-        <Link to = {`/program/:id`}>
+         <Link to = {`/program/:id`}>
             Start Lifting
           </Link>
-        </Button>
+        </Button> 
 
       
       {/* <CameraAccess /> */}
