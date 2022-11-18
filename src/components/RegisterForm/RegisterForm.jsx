@@ -44,15 +44,6 @@ function RegisterForm() {
     });
   }; // end registerUser
 
-  // dispatch({
-  //   type: 'REGISTER',
-  //   payload: {
-  //     username: username,
-  //     password: password,
-  //     experience: experience,
-  //     personalRecords: personalRecords
-  //   },
-
   
 
   return (

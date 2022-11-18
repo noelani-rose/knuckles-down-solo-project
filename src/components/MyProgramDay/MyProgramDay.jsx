@@ -13,9 +13,9 @@ function MyProgramDay () {
         <div>
             Here are the list of days 
 
-            <Link id="RouterNavLink" to = '/exercises'>
+            {/* <Link id="RouterNavLink" to = '/exercises'> */}
                 <MyProgramDayItem />
-            </Link>
+            {/* </Link> */}
         </div>
     )
 }

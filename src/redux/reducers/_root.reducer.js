@@ -4,20 +4,17 @@ import user from './user.reducer';
 import program from './program.reducer'
 import exercises from './exercises.reducer'
 import userProgram from './user.programs.reducer'
+// import currentProgram from './current.program.reducer'
+import currentProgram from './current.program.reducer'
 
 
-// rootReducer is the primary reducer for our entire project
-// It bundles up all of the other reducers so our project can use them.
-// This is imported in index.js as rootSaga
-
-// Lets make a bigger object for our store, with the objects from our reducers.
-// This is what we get when we use 'state' inside of 'mapStateToProps'
 const rootReducer = combineReducers({
   errors, // contains registrationMessage and loginMessage
   user, // will have an id and username if someone is logged in
   program,
   exercises,
-  userProgram
+  userProgram,
+  currentProgram,
 });
 
 export default rootReducer;

@@ -1,10 +1,8 @@
 const exercisesReducer = (state = [], action) => {
     switch (action.type) {
-      case 'SET_PROGRAM_WEEKS':
-        return action.payload
-        
+      case 'SET_PROGRAM_EXERCISES':
+        return {exercises: action.payload}    
     }
-    console.log('the action payload from program reducer is', )
     return state;
   };
   

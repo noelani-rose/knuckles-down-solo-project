@@ -35,6 +35,7 @@ function App() {
     dispatch({ type: 'FETCH_USER' });
   }, [dispatch]);
 
+
   return (
     <Router>
       <div>
@@ -86,6 +87,7 @@ function App() {
             }
           </Route>
 
+
           <Route
             exact
             path="/registration"
@@ -115,6 +117,8 @@ function App() {
             }
           </Route>
 
+
+
           <Route exact path='/programs'>
             <ProgramsList/>
           </Route>
@@ -129,15 +133,15 @@ function App() {
           </Route>
 
 
-          <Route exact path = '/my_program/'>
+          <Route exact path = '/program/:programId'>
             <MyProgram/>
           </Route>
 
-          <Route exact path = '/days'>
+          <Route exact path = '/program/:programId/week/:weekId'>
             <MyProgramDay />
           </Route>
 
-          <Route exact path = '/exercises'>
+          <Route exact path = '/program/:programId/week/:weekId/day/:dayId'>
             <Exercises />
           </Route>
 

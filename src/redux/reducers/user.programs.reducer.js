@@ -4,6 +4,8 @@ const userProgramReducer = (state = [], action) => {
             return action.payload;
         case 'SET_PROGRAM_DAYS':
             return action.payload
+        // case 'SET_PROGRAM_EXERCISES':
+        //     return action.payload
     }
     return state;
   };

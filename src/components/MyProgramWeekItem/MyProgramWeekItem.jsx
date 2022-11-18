@@ -21,41 +21,24 @@ function MyProgramWeekItem() {
     useEffect(() => {
         dispatch({
             type: 'FETCH_PROGRAM_WEEKS',
-            payload: params.id
+            payload: {programId: params.programId}
         })
-    }, [])
+        console.log('what even is params id at this point', params)
+    }, [params.programId])
 
 
     return(
         <>
-                <Link id="RouterNavLink" to='/days'>
-                    {weeks.map(week => (
-                        <div>{week.week}</div>
-                    ))}
-                    <div></div>
-                </Link><br />
+            {weeks.map(week => (
+                <Link id="RouterNavLink" to={'/week/' + week.week} key = {week.week} >
+                {week.week}<br/>
+                </Link>
+            ))}
+    
+                
         </>
     )
 
-
-    // if (weeks !== 'undefined') {
-    //     return (
-    //         <div>
-    //             <Link id="RouterNavLink" to='/days'>
-    //                 {/* {weeks.map(week => (
-    //                     <div key={week.exercises.id}>{week.week}</div>
-    //                 ))} */}
-    //                 <div></div>
-    //             </Link><br />
-
-    //         </div>
-    //     )
-
-    // } else {
-    //     return(
-    //         <><h1>Loading...</h1></>
-    //     )
-    // }
 }
 
 export default MyProgramWeekItem
