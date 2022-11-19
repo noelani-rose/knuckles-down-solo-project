@@ -117,3 +117,12 @@ table, th, tr, td{
   text-align: center;
   margin-left: 10%;
 }
+
+.MuiListItem-gutters {
+padding-left: 15px;
+}
+
+.MuiListItemText-root{
+  padding: 6px;
+
+}

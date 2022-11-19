@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import LogOutButton from '../LogOutButton/LogOutButton';
+
 import {useSelector} from 'react-redux';
 import { Button } from '@mui/material';
 // import CameraAccess from '../CameraAccess/CameraAccess';
@@ -48,7 +49,9 @@ function HomePage() {
 
   if (!currentProgram == []) {
   return (
+
     <div className="container">
+
       <h2>Welcome, {user.username}!</h2>
 
       {currentProgram ? (

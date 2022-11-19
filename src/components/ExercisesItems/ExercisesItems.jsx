@@ -4,14 +4,10 @@ import CheckSkipBox from "../CheckBox/CheckBox";
 
 
 function ExercisesItems () {
-    const [checked, setChecked] = useState(false);
     const exercises = useSelector(store => store.exercises)
     
     
-    const handleChange = (event) => {
-        setChecked(event.target.checked);
-        console.log('checked', checked)
-    };
+
     
     
     return(
@@ -22,7 +18,7 @@ function ExercisesItems () {
                 {exercise.name} - 
                 {exercise.rep_scheme} - 
                 {exercise.notes}
-                <CheckSkipBox exercises = {exercises[0]}/>
+                <CheckSkipBox exercises = {exercises}/>
             </li>          
             ))}      
             </ul>

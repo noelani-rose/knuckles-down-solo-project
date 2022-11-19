@@ -3,14 +3,17 @@ import { Link } from 'react-router-dom';
 import LogOutButton from '../LogOutButton/LogOutButton';
 import './Nav.css';
 import { useSelector } from 'react-redux';
+import DrawerTemp from '../Drawer/Drawer';
+
 
 function Nav() {
   const user = useSelector((store) => store.user);
 
   return (
     <div className="nav">
+      <DrawerTemp />
       <Link to="/user">
-        <h2 className="nav-title">Prime Solo Project</h2>
+        <h2 className="nav-title">Knuckles Down</h2>
       </Link>
       <div>
         {/* If no user is logged in, show these links */}
