@@ -1,32 +1,27 @@
 import axios from 'axios';
 import { put, takeLatest } from 'redux-saga/effects';
 
-function* fetchProgramWeeks() {
-    console.log('in fetchPrograms function in program.saga')
-  try {
-    const config = {
-      headers: { 'Content-Type': 'application/json' },
-      withCredentials: true,
-    };
+const config = {
+  headers: { 'Content-Type': 'application/json' },
+  withCredentials: true,
+}; 
 
-    // the config includes credentials which
-    // allow the server session to recognize the user
-    // If a user is logged in, this will return their information
-    // from the server session (req.user)
-    const response = yield axios.get('/program', config);
-    // console.log('what is the response', response.data)
+function* fetchProgramExercises (action) {
+  // console.log('in the fetch program exercises function with payload', action.payload,)
+  try{
+ 
+  const response = yield axios.get (`/api/exercises/program/${action.payload.programId}/week/${action.payload.weekId}/day/${action.payload.dayId}/exercises`, config)
 
-    // now that the session has given us a user object
-    // with an id and username set the client-side user object to let
-    // the client-side code know the user is logged in
-    yield put({ type: 'SET_PROGRAM_WEEKS', payload: response.data });
+  yield put({ type: 'SET_PROGRAM_EXERCISES', payload: response.data})
+  // console.log('what exercises am i getting back?', response.data) 
   } catch (error) {
-    console.log('User get request failed', error);
+      console.log('error getting exercises for that day back',error)
   }
 }
 
-function* programSaga() {
-  yield takeLatest('FETCH_PROGRAM_WEEKS', fetchProgramWeeks);
+
+function* exercisesSaga() {
+  yield takeLatest('FETCH_PROGRAM_EXERCISES', fetchProgramExercises);
 }
 
-export default programSaga;
+export default exercisesSaga;

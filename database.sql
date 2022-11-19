@@ -38,7 +38,7 @@ CREATE TABLE "programs_exercises" (
 );
 
 
-REATE TABLE "user_programs_exercises" (
+CREATE TABLE "user_programs_exercises" (
 	"id" SERIAL PRIMARY KEY,
 	"user_id" INT REFERENCES "user",
 	"programs_exercises_id" INT REFERENCES "programs",

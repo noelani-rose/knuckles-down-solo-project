@@ -8,21 +8,27 @@ function MyProgramDayItem () {
     const params = useParams()
     const dispatch = useDispatch()
     const days = useSelector(store => store.userProgram)
-    console.log('what is in the store for my days', days)
+    const weeks = useSelector(store => store.userProgram)
+    console.log('what is week id params on DAY PAGE', params.weekId)
+    console.log('what is program id params on DAY PAGE', params.programId)
+
 
     useEffect(() => {
         dispatch({
             type: 'FETCH_PROGRAM_DAYS', 
-            payload: params.id
+            payload: {
+                programId: params.programId,
+                weekId: params.weekId
+            }
         })
-    }, [params.id])
-
+    }, [params.programId, params.weekId])
+    // took out params.programId
 
     return (
         <>
             {days.map(day => (
-                <Link id="RouterNavLink" to = {'/day/' + day.day} key = {day.day}><br/>
-                {day.day}<br/>
+                <Link id="RouterNavLink" to = {`/program/${params.programId}/week/${params.weekId}/day/` + day.day + `/exercises`} key = {day.id}><br/>
+                <div>{day.day}</div>
                 </Link>
             ))}
         </>

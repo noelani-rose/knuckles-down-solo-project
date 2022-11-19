@@ -6,27 +6,20 @@ import { Button } from '@mui/material';
 import { useHistory } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { useParams } from 'react-router-dom';
-
 
 
 
 function HomePage() {
   // this component doesn't do much to start, just renders some user reducer info to the DOM
   const history = useHistory();
-  const params = useParams()
   const dispatch = useDispatch()
   const user = useSelector((store) => store.user);
   const currentProgram = useSelector((store) => store.currentProgram)
-  console.log('what is the current program', currentProgram)
+
 
   const chooseProgram = () => {
     history.push('/programs')
   }
-
-  // const programId = 1;
-  // let selectedProgramId = fetch(`/users/${programId}`);
-  // selectedProgramId = 1;
 
   const personalRecords = [
     'Snatch:' + user.snatch_pr,
@@ -37,12 +30,15 @@ function HomePage() {
 
 
   useEffect(() => {
-    console.log('in use effect trying to get user program')
-    dispatch({
-      type: 'FETCH_CURRENT_PROGRAM',
+    if (currentProgram) {
+        dispatch({
+            type: 'FETCH_CURRENT_PROGRAM',
+            payload: currentProgram.programs_id
+        });
+    }
+}, [currentProgram.programs_id]);
 
-    })
-  }, [])
+
 
 
   if (currentProgram == undefined){
@@ -50,14 +46,22 @@ function HomePage() {
 }
 
 
+  if (!currentProgram == []) {
   return (
-
     <div className="container">
       <h2>Welcome, {user.username}!</h2>
+
+      {currentProgram ? (
+        <p>Your current program: {currentProgram[0].name}</p>
+      ) : (
+        <p>I don't have a program :(</p>
+      )}
+
       <p>Your ID is: {user.id}</p>
       {/* <p>Your Program is: {currentProgram[0].name}</p> */}
       {/* <p>This programs Experience Level is: {currentProgram[0].experience_level}</p> */}
       <p>Your experience level is: {user.experience}</p>
+
       {/* <ul> */}
         Your personsonal records are: 
         <ul>
@@ -68,40 +72,39 @@ function HomePage() {
           ))}
         </ul>
 
-      <LogOutButton className="btn" />
-      <br/>
-      <br/>
 
 
-      {/* {currentProgram ?
-      <Button variant = 'oulined'>
-          <Link to = {`/program/${currentProgram[0].programs_id}`}>
-          <Link to = {`/program/:id`}>
-              Start Lifting
-          </Link>
-      </Button>
-        : 
-      <Button variant = 'outlined' onClick = {chooseProgram}>
-        Choose a Program
-      </Button>
-
-      } */}
-      
-      <Button variant = 'outlined' onClick = {chooseProgram}>
-        Choose a Program
-      </Button>
-         <Button variant = 'oulined'> 
-        {/* <Link to = {`/program/${currentProgram[0].programs_id}`}> */}
-         <Link to = {`/program/:id`}>
-            Start Lifting
-          </Link>
-        </Button> 
+      {currentProgram ? (
+        <Button variant = 'oulined'>
+          	{/* this ID is being hard coded for now, make it dynamic */}
+          	{/* <Link to = {`/program/${currentProgram[0].programs_id}`}> */}
+		        <Link to = {`/program/1`}>
+			        Go to my program
+		        </Link>
+	      </Button>
+      ) : (
+	      <Button variant = 'outlined' onClick = {chooseProgram}>
+		      Choose a Program
+	      </Button>
+      )}
 
       
       {/* <CameraAccess /> */}
+      <br/>
+      <LogOutButton className="btn" />
     </div>
 
   );
+}
+
+
+else {
+  return (
+    <p>I don't have a program yet</p>
+  )
+}
+
+
 }
 
 // this allows us to use <App /> in index.js

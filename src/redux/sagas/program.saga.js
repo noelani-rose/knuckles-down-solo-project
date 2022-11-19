@@ -10,11 +10,9 @@ const config = {
 function* fetchPrograms() {
     console.log('in fetchPrograms function in program.saga')
   try {
-
     const response = yield axios.get('/api/program/', config);
     console.log('what is the response', response.data)
-
-
+    
     yield put({ type: 'SET_PROGRAMS', payload: response.data });
   } catch (error) {
     console.log('User get request failed', error);

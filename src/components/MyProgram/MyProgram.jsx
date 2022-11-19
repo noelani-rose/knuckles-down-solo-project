@@ -1,45 +1,14 @@
-import {
-    HashRouter as Router,
-    Redirect,
-    Route,
-    Switch,
-    Link
-  } from 'react-router-dom';
-import { useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { useParams, useHistory } from 'react-router-dom';
-
-
-
+import { useSelector } from "react-redux";
 
 import MyProgramWeek from "../MyProgramWeek/MyProgramWeek";
 
 
 function MyProgram () {
-    const dispatch = useDispatch();
-    const params = useParams();
-    // const weeks = useSelector(store => store.user)
-    // console.log('what is weeks', weeks)
-
-    // useEffect(() => {
-    //     console.log('in use effect to fetch user program')
-    //     dispatch({
-    //         type: 'FETCH_USER_PROGRAM', // trying to get all exercises for that user's program
-    //         // payload: params.id
-    //     })
-    //     // console.log('what even is params.id', params.id)
-    // }, [params.id])
-
-
-
-
+const programName = useSelector(store => store.currentProgram[0].name)
     return (
         <div>
-            Here is my current program
-
-                <MyProgramWeek />
-            
-            
+            <h1>Current Program: {programName}</h1>
+                <MyProgramWeek /> 
         </div>
     )
 }

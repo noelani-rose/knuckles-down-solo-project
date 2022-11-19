@@ -36,7 +36,7 @@ function* addUserProgram (action) {
     yield axios.post(`/api/user/`, {data: action.payload}, config);
 
     yield put({
-      type: 'FETCH_USER_PROGRAM'
+      type: 'FETCH_CURRENT_PROGRAM'
     })
   } catch (error) {
     console.log('User post user_program_id', error)

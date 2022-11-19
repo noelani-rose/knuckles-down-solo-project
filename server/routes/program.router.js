@@ -20,11 +20,10 @@ router.get('/', rejectUnauthenticated, (req, res) => {
   })
 });
 
-router.get('/myProgram/', rejectUnauthenticated, (req, res) => {
-  console.log('IN ROUTER TRYING TO GET PROGRAM ID!!!!!')
+router.get('/myProgram', rejectUnauthenticated, (req, res) => {
   const userId = [req.user.id]
-  console.log('what is the user id?', userId)
   const sqlText = 
+  // this should be where programs.id = to the one that was just selected, not user_id
   `
   SELECT * FROM "programs"
   JOIN "user_programs" ON "user_programs".programs_id = "programs".id
@@ -39,6 +38,12 @@ router.get('/myProgram/', rejectUnauthenticated, (req, res) => {
     res.sendStatus(500)
   })
 })
+
+
+
+
+
+router.get('/')
 
 /**
  * POST route template
