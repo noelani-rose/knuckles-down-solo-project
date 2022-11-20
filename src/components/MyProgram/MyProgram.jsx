@@ -1,8 +1,6 @@
 import { useSelector } from "react-redux";
 import MyProgramWeek from "../MyProgramWeek/MyProgramWeek";
 
-
-
 function MyProgram () {
 const programName = useSelector(store => store.currentProgram[0].name)
     return (

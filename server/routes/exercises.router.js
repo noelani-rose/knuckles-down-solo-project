@@ -7,14 +7,10 @@ const router = express.Router();
  */
 
 
-// /api/exercises/${action.payload.programId}/week/${action.payload.weekId}/day/${action.payload.dayId}
-
 
 router.get('/program/:programId/week/:weekId/day/:dayId', (req, res) => {
 
   const sqlParams = [req.params.weekId, req.params.dayId, req.params.programId]
-  console.log('what is sqlParams when im in the exercises router', sqlParams)
-  // GET route code here
   const queryText = `
   SELECT 
   JSON_AGG("exercises") as exercises,

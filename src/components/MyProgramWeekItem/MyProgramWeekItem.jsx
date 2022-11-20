@@ -20,7 +20,8 @@ function MyProgramWeekItem() {
     return(
         <>
             {weeks.map(week => (
-                <Link id="RouterNavLink" to={`/program/${programId}/week/` + week.week} key = {week.week} >        
+                <Link id="RouterNavLink" to=
+                {`/program/${programId}/week/` + week.week} key = {week.week} >        
                 {week.week}<br/>
                 </Link>
             ))}

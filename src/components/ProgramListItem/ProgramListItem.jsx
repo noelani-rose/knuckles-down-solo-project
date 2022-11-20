@@ -31,14 +31,11 @@ function ProgramListItem () {
     const handleClose = () => {
         setOpen(false);
     };
-
-    
     const redirectToHome = () => {
         history.push('/user')
     }
-    
+
     const addUserProgram = () => {
-        
         console.log('in adduserprogram function sending over program id')
         console.log('the payload id for add user program is', programId)
         
@@ -53,8 +50,6 @@ function ProgramListItem () {
     
     return(
 <>
-
-
 
 <React.Fragment> 
     <Dialog
@@ -89,24 +84,6 @@ function ProgramListItem () {
     </Dialog>
 </React.Fragment>
 
-
-    <div>
-    {/* <Button
-        onClick={handleAlertClick({
-          vertical: 'top',
-          horizontal: 'center',
-        })}
-      >
-        Top-Center
-      </Button> */}
-        {/* <Snackbar
-            anchorOrigin={{ vertical, horizontal }}
-            alertOpen={open}
-            onClose={handleAlertClose}
-            message="Program Added!"
-            key={vertical + horizontal}
-        /> */}
-    </div>
     
     <table>
     <thead>

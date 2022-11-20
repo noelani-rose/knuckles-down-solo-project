@@ -28,7 +28,8 @@ function MyProgramDayItem () {
     return (
         <>
             {days.map(day => (
-                <Link id="RouterNavLink" to = {`/program/${params.programId}/week/${params.weekId}/day/` + day.day} key = {day.id}>
+                <Link id="RouterNavLink" to = 
+                {`/program/${params.programId}/week/${params.weekId}/day/` + day.day} key = {day.day}>
                 <div>{day.day}</div>
                 </Link>
             ))}

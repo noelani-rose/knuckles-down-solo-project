@@ -44,14 +44,9 @@ function* addUserProgram (action) {
 }
 
 
-
-
-
 function* userSaga() {
   yield takeLatest('FETCH_USER', fetchUser);
   yield takeLatest('ADD_USER_PROGRAM', addUserProgram)
-  // yield takeLatest('FETCH_USER_PROGRAM', fetchUserProgram)  
-
 }
 
 export default userSaga;

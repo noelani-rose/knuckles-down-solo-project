@@ -8,15 +8,10 @@ const userStrategy = require('../strategies/user.strategy');
 
 const router = express.Router();
 
-// Handles Ajax request for user information if user is authenticated
 router.get('/', rejectUnauthenticated, (req, res) => {
-  // Send back user object from the session (previously queried from the database)
   res.send(req.user);
 });
 
-// Handles POST request with new user data
-// The only thing different from this and every other post we've seen
-// is that the password gets encrypted before being inserted
 router.post('/register', (req, res, next) => {
   const password = encryptLib.encryptPassword(req.body.password);
   const newUser = req.body
@@ -43,7 +38,6 @@ router.post('/register', (req, res, next) => {
 router.post('/', rejectUnauthenticated, (req, res) => {
   const programId = req.body.data;
   const currentUser = req.user;
-  console.log('what is req.user??', currentUser.id);
   console.log('the program id being posted is to server is', programId)
   const queryText = `
   INSERT INTO "user_programs" 
@@ -54,7 +48,6 @@ router.post('/', rejectUnauthenticated, (req, res) => {
   pool.query(queryText, sqlParams)
   .then((dbResult) => {
     res.sendStatus(200);
-    console.log('program id added to user_programs')
   })
   .catch((error) => {
     res.sendStatus(500);
@@ -62,7 +55,6 @@ router.post('/', rejectUnauthenticated, (req, res) => {
   })
 })
 
-// should this be /myProgram? if so, then make end point at saga the same
 router.get('/myProgram', rejectUnauthenticated, (req, res) => {
   const userId = [req.user.id]
   const sqlText = 

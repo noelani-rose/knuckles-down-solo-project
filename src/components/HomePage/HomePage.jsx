@@ -43,7 +43,7 @@ function HomePage() {
     <div className="container">
 
       <h2>Welcome, {user.username}!</h2>
-      {currentProgram ? (
+      {!currentProgram ? (
         <p>Your current program: {currentProgram[0].name}</p>
       ) : (
         <p>I don't have a program :(</p>

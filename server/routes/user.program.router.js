@@ -5,7 +5,6 @@ const router = express.Router();
 
 
 router.get('/:programId', rejectUnauthenticated, (req, res) => {
-    console.log('what is the program id', req.params.programId)
     const programId = [req.params.programId]
     console.log('I AM IN THE ROUTER GET FUNCTION TO GET PROGRAM WEEKS')
     const sqlText = 
@@ -27,9 +26,7 @@ router.get('/:programId', rejectUnauthenticated, (req, res) => {
     })
   })
 
-
   router.get('/:programId/week/:weekId', rejectUnauthenticated, (req, res) => {
-    console.log('what is the program id', req.params.programId)
     const programId = [req.params.programId, req.params.weekId]
     console.log('I AM IN THE ROUTER GET FUNCTION TO GET PROGRAM DAYS')
     const sqlText = 
@@ -51,11 +48,6 @@ router.get('/:programId', rejectUnauthenticated, (req, res) => {
       res.sendStatus(500)
     })
   })
-
-
-
-// /api/user/program/${action.payload.programId}/week/${action.payload.weekId}
-// /:programId/week/:weekId
 
 
 module.exports = router;
