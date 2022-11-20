@@ -9,7 +9,7 @@ const config = {
 
 function* fetchCurrentProgram () {
     try{
-        const response = yield axios.get(`/api/program/myProgram`);
+        const response = yield axios.get(`/api/user/myProgram/`, config);
         console.log('am i gettin a response from the server', response)
         yield put({
           type: 'SET_CURRENT_PROGRAM',

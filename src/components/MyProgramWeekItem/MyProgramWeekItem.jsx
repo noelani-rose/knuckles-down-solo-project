@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 function MyProgramWeekItem() {
     const dispatch = useDispatch();
-    const weeks = useSelector(store => store.userProgram)
+    const weeks = useSelector(store => store.week)
     const currentProgramId = useSelector(store => store.currentProgram)
     const programId = currentProgramId[0].programs_id
 
@@ -20,8 +20,7 @@ function MyProgramWeekItem() {
     return(
         <>
             {weeks.map(week => (
-                <Link id="RouterNavLink" to={`/program/${programId}/week/` + week.week} key = {week.week} >
-                    
+                <Link id="RouterNavLink" to={`/program/${programId}/week/` + week.week} key = {week.week} >        
                 {week.week}<br/>
                 </Link>
             ))}

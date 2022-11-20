@@ -42,19 +42,15 @@ router.post('/register', (req, res, next) => {
 
 router.post('/', rejectUnauthenticated, (req, res) => {
   const programId = req.body.data;
-  // console.log('req.user.id is', req.user)
-
   const currentUser = req.user;
   console.log('what is req.user??', currentUser.id);
   console.log('the program id being posted is to server is', programId)
-
   const queryText = `
   INSERT INTO "user_programs" 
   ("user_id", "programs_id")
   VALUES ($1, $2);`;
 
   const sqlParams = [currentUser.id, programId]
-
   pool.query(queryText, sqlParams)
   .then((dbResult) => {
     res.sendStatus(200);
@@ -65,95 +61,26 @@ router.post('/', rejectUnauthenticated, (req, res) => {
     console.log('post program id to user_programs failed', error)
   })
 })
-// TODO: check out npm i http-status-codes
-// StatusCode.INTERNAL_SERVER_ERROR
 
-
-
-// router.post('/programWeeks', (req, res) => {
-//   const {programId} = req.body;
-//   const sqlValues = [programId]
-//   // get weeks from db
-
-//   const sqlText = 
-//   `
-//   SELECT DISTINCT "programs_exercises".week from "programs_exercises"
-//   LEFT JOIN "user_programs" ON "user_programs".programs_id = "programs_exercises".program_id
-//   WHERE "user_programs".program_id = $1
-//   ORDER BY "programs_exercises".week;
-//   `;
-
-//   pool.query(sqlText, sqlValues)
-//   .then((dbResult) => {
-//     // console.log('what program info am i getting back from the user_programs table?', dbResult.rows)
-//     res.json(dbResult.rows)
-        
-//   })
-//   .catch((error) => {
-//     console.log('error getting program weeks back from db', error)
-//   })
-// })
-
-
-
-// router.get('/week/day/:id', (req, res) => {
-//   console.log('I AM IN THE ROUTER TO GET PROGRAM DAYS')
-
-//   const sqlText = 
-//   `
-//   SELECT 
-//   "programs"."name", "programs_exercises"."day"
-//   FROM "programs"
-//   JOIN "programs_exercises" ON "programs_exercises"."program_id" = "programs"."id"
-//   GROUP BY "programs"."name", "programs_exercises"."day"
-//   ORDER BY "programs_exercises"."day";
-//   `;
-
-//   pool.query(sqlText)
-//   .then((dbResult) => {
-//     // console.log('whats the result when trying to get back days', dbResult.rows)
-//     res.send(dbResult.rows)
-//   })
-//   .catch((error) => {
-//     console.log('error getting days back from db', error)
-//     res.sendStatus(500)
-//   })
-// })
-
-// router.get('/program/:program_id/week/:week_id/day/:day_id/exercises', (req, res) => {
-//   const sqlParams = [req.params.program_id, req.params.week_id, req.params.day_id]
-//   console.log('HELLO WORLD!!!!!!', req.params)
-//   console.log('I AM IN THE ROUTER TO GET DAY EXERCISES', req.params.week_id)
-
-//   const sqlText = 
-// `
-// SELECT *
-// FROM "programs_exercises"
-// JOIN "exercises" ON "programs_exercises".exercise_id = "exercises".id
-// WHERE "program_id" = $1 and "day" = $2 AND "week" = $3;
-// `;
-
-// // need to get rid of the WHERE WEEK = 1
-
-// pool.query(sqlText, sqlParams)
-// .then((dbResult) => {
-//   console.log('what exercises am i getting back from server', dbResult.rows)
-//   res.send(dbResult.rows)
-// })
-// .catch((error) => {
-//   console.log('error getting exercises back', error)
-//   res.sendStatus(500)
-// })
-// })
-
-
-
-
-
-
-
-
-
+// should this be /myProgram? if so, then make end point at saga the same
+router.get('/myProgram', rejectUnauthenticated, (req, res) => {
+  const userId = [req.user.id]
+  const sqlText = 
+  // this should be where programs.id = to the one that was just selected, not user_id
+  `
+  SELECT * FROM "programs"
+  JOIN "user_programs" ON "user_programs".programs_id = "programs".id
+  WHERE "user_id" = $1;
+  `; 
+  pool.query(sqlText, userId)
+  .then(dbResult => {
+    res.send(dbResult.rows)
+  })
+  .catch(error => {
+    console.log('error getting all programs', error)
+    res.sendStatus(500)
+  })
+})
 
 
 

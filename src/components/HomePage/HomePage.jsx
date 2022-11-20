@@ -31,29 +31,18 @@ function HomePage() {
 
 
   useEffect(() => {
-    if (currentProgram) {
+    console.log('in use effect on home page')
         dispatch({
             type: 'FETCH_CURRENT_PROGRAM',
             payload: currentProgram.programs_id
         });
-    }
+    // }
 }, [currentProgram.programs_id]);
 
-
-
-
-  if (currentProgram == undefined){
-    currentProgram = []
-}
-
-
-  if (!currentProgram == []) {
   return (
-
     <div className="container">
 
       <h2>Welcome, {user.username}!</h2>
-
       {currentProgram ? (
         <p>Your current program: {currentProgram[0].name}</p>
       ) : (
@@ -98,17 +87,7 @@ function HomePage() {
     </div>
 
   );
-}
-
-
-else {
-  return (
-    <p>I don't have a program yet</p>
-  )
-}
-
-
-}
+} 
 
 // this allows us to use <App /> in index.js
 export default HomePage;

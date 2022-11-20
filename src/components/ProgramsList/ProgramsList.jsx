@@ -12,8 +12,6 @@ function ProgramsList () {
         })
     }, [])
 
-
-
     return (
          <div>
              Program List...

@@ -1,6 +1,9 @@
 import { useState } from "react";
 import Checkbox from '@mui/material/Checkbox';
 import { pink } from '@mui/material/colors';
+import AutoStoriesIcon from '@mui/icons-material/AutoStories';
+import { Button } from "@mui/material";
+
 
 
 function CheckSkipBox ({exercises}) {
@@ -20,6 +23,7 @@ function CheckSkipBox ({exercises}) {
         console.log('skipped', skipped)
         setDone(false)
     };
+
 
 
 

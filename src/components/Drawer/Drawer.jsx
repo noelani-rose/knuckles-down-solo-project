@@ -19,7 +19,7 @@ import { useSelector } from 'react-redux';
 import MenuIcon from '@mui/icons-material/Menu';
 import { useState } from 'react';
 import { Fragment } from 'react';
-import { useRadioGroup } from '@mui/material';
+
 
 // <CustomListItem to="/" primary="Home Page" />
 
@@ -27,6 +27,13 @@ function DrawerTemp () {
     const [state, setState] = useState({left: false});
     const currentProgram = useSelector(store => store.currentProgram)
     
+    // if (currentProgram) {
+    //     currentProgram = []
+    // }
+
+
+
+
       const toggleDrawer = (anchor, open) => (event) => {
         if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
           return;
@@ -37,7 +44,7 @@ function DrawerTemp () {
     
       const links = [
         { to: '/user', name: 'Home', icon: <HomeIcon /> },
-        { to: `/program/${currentProgram[0].programs_id}`, name: 'My Program', icon: <FitnessCenterIcon /> },
+        // { to: `/program/${currentProgram[0].programs_id}`, name: 'My Program', icon: <FitnessCenterIcon /> },
         { to: '/journal', name: 'My Journal', icon: <AutoStoriesIcon /> },
         { to: '/progress', name: 'My Progress', icon: <TrendingUpIcon /> }
       ]

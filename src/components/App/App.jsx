@@ -141,7 +141,7 @@ function App() {
             <MyProgramDay />
           </Route>
 
-          <Route exact path = '/program/:programId/week/:weekId/day/:dayId/exercises'>
+          <Route exact path = '/program/:programId/week/:weekId/day/:dayId'>
             <Exercises />
           </Route>
 

@@ -3,7 +3,7 @@ import loginSaga from './login.saga';
 import registrationSaga from './registration.saga';
 import userSaga from './user.saga';
 import programSaga from './program.saga';
-import exercisesSaga from './exercises.saga'
+// import exercisesSaga from './exercises.saga'
 import userProgramSaga from './user.programs.saga';
 import currentProgramSaga from './current.program.saga'
 
@@ -16,7 +16,7 @@ export default function* rootSaga() {
     registrationSaga(),
     userSaga(),
     programSaga(),
-    exercisesSaga(), 
+    // exercisesSaga(), 
     userProgramSaga(),
     currentProgramSaga()
     

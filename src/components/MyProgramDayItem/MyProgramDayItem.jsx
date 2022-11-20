@@ -7,10 +7,11 @@ import { useParams } from 'react-router-dom';
 function MyProgramDayItem () {
     const params = useParams()
     const dispatch = useDispatch()
-    const days = useSelector(store => store.userProgram)
-    const weeks = useSelector(store => store.userProgram)
+    let days = useSelector(store => store.day)
+    // days = days[days.length -1]
     console.log('what is week id params on DAY PAGE', params.weekId)
     console.log('what is program id params on DAY PAGE', params.programId)
+//     exercises = exercises[exercises.length -1].exercises;
 
 
     useEffect(() => {
@@ -27,7 +28,7 @@ function MyProgramDayItem () {
     return (
         <>
             {days.map(day => (
-                <Link id="RouterNavLink" to = {`/program/${params.programId}/week/${params.weekId}/day/` + day.day + `/exercises`} key = {day.id}><br/>
+                <Link id="RouterNavLink" to = {`/program/${params.programId}/week/${params.weekId}/day/` + day.day} key = {day.id}>
                 <div>{day.day}</div>
                 </Link>
             ))}
