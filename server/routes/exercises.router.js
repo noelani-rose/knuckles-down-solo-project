@@ -4,38 +4,15 @@ const router = express.Router();
 const { rejectUnauthenticated } = require('../modules/authentication-middleware');
 
 
-/**
- * GET route template
- */
-
-
-
 router.get('/program/:programId/week/:weekId/day/:dayId', rejectUnauthenticated, (req, res) => {
 
   const sqlParams = [req.params.weekId, req.params.dayId, req.params.programId]
   const queryText = 
-//   `
-//   SELECT 
-//   JSON_AGG("exercises") as exercises,
-//   "programs_exercises"."week",
-//   "programs_exercises"."day"
-//   FROM
-//   "programs"
-//   LEFT JOIN "programs_exercises" ON "programs_exercises"."program_id" = "programs"."id"
-//   LEFT JOIN "exercises" ON "programs_exercises"."exercise_id" = "exercises"."id"
-//   LEFT JOIN "user_programs" ON "user_programs"."programs_id" = "programs"."id"
-//   WHERE "programs_exercises"."week" = $1 
-//   AND "programs_exercises"."day" = $2 
-//   AND "programs_exercises".program_id = $3
-//   GROUP BY "programs"."id", "programs_exercises"."week",
-//   "programs_exercises"."day"
-//   ORDER BY "week", "day";
-// `
 `
 SELECT DISTINCT
 "exercises"."name", "exercises".rep_scheme, "exercises".notes, 
  "programs_exercises"."week",
- "programs_exercises"."day"
+ "programs_exercises"."day", "exercises".id
  FROM
  "programs"
  LEFT JOIN "programs_exercises" ON "programs_exercises"."program_id" = "programs"."id"
@@ -45,8 +22,8 @@ SELECT DISTINCT
  AND "programs_exercises"."day" = $2 
  AND "programs_exercises".program_id = $3
  GROUP BY "programs"."id", "programs_exercises"."week",
- "programs_exercises"."day", "exercises".rep_scheme, "exercises".notes, "exercises"."name"
- ORDER BY "week", "day";
+ "programs_exercises"."day", "exercises".rep_scheme, "exercises".notes, "exercises"."name","exercises".id
+ ORDER BY "week", "day", "exercises".id;
 `;
 
   
