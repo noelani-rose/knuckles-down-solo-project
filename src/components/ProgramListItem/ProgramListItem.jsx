@@ -7,12 +7,17 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import Snackbar from '@mui/material/Snackbar';
+import Stack from '@mui/material/Stack';
+import MuiAlert from '@mui/material/Alert';
 
 import { useDispatch, useSelector } from 'react-redux'
 import { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 
 
+const Alert = React.forwardRef(function Alert(props, ref) {
+    return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+  });
 
 function ProgramListItem () {
     const history = useHistory();
@@ -21,6 +26,8 @@ function ProgramListItem () {
     const dispatch = useDispatch();
     const [programId, setProgramId] = useState()
     const [open, setOpen] = useState(false);
+    const [openAlert, setOpenAlert] = useState(false);
+
 
     const handleClickOpen = (id) => {
         setOpen(true);
@@ -28,12 +35,22 @@ function ProgramListItem () {
         setProgramId(id);
     };
     
+    const handleAlertOpen = () => {
+        setOpenAlert(true);
+      };
+
+      const handleAlertClose = (event, reason) => {
+        if (reason === 'clickaway') {
+          return;
+        }
+        setOpenAlert(false);
+    };
+
     const handleClose = () => {
         setOpen(false);
     };
-    const redirectToHome = () => {
-        history.push('/user')
-    }
+
+
 
     const addUserProgram = () => {
         console.log('in adduserprogram function sending over program id')
@@ -44,8 +61,10 @@ function ProgramListItem () {
             payload: programId
         })
         handleClose();
-        redirectToHome();
-        // handleAlertClick();   
+        handleAlertOpen()
+        setTimeout(() => {
+            history.push('/user')
+          }, 1500);  
     }
     
     return(
@@ -108,6 +127,13 @@ function ProgramListItem () {
         ))}
         </tbody>
         </table>
+        <Stack spacing={2} sx={{ width: '100%' }}>
+      <Snackbar open={openAlert} autoHideDuration={6000} onClose={handleAlertClose}>
+        <Alert onClose={handleAlertClose} severity="success" sx={{ width: '100%' }}>
+          Your program has been added!
+        </Alert>
+      </Snackbar>
+    </Stack>
         </>
     )
 }

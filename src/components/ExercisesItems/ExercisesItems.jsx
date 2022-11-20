@@ -28,8 +28,7 @@ function ExercisesItems ({programName}) {
     const dispatch = useDispatch()
     const [open, setOpen] = useState(false);
     let exercises = useSelector(store => store.exercises)
-    const week = exercises[0].week
-    const day = exercises[0].day
+
     const [journal, setJournal] = useState({program: params.programId, week: 0, day: 0, entry: ''});
     console.log('whats journal week and day after click', journal)
 
@@ -87,9 +86,11 @@ function ExercisesItems ({programName}) {
         )
     }
     // else {
+        const week = exercises[0].week
+        const day = exercises[0].day
     return(
         <>
-            {/* <ul>
+            <ul>
                 {exercises[0].exercises.map(exercise => (
                     <li key = {exercise.id}>
                         {exercise.name}:
@@ -99,7 +100,7 @@ function ExercisesItems ({programName}) {
                         <br/>
                     </li>
                 ))}
-            </ul> */}
+            </ul>
             <Button variant = "text" onClick = {() => handleClickOpen(week, day)}
                 sx = {{height: '80px'}}> Add a Journal Entry&nbsp;&nbsp;
                 <AutoStoriesIcon fontSize='large'/>

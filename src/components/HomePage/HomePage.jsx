@@ -16,6 +16,7 @@ function HomePage() {
   const dispatch = useDispatch()
   const user = useSelector((store) => store.user);
   const currentProgram = useSelector((store) => store.currentProgram)
+  // console.log('whats the id rn', currentProgram[0].name)
 
 
   const chooseProgram = () => {
@@ -31,12 +32,13 @@ function HomePage() {
 
 
   useEffect(() => {
+    if (currentProgram){
     console.log('in use effect on home page')
         dispatch({
-            type: 'FETCH_CURRENT_PROGRAM',
-            payload: currentProgram.programs_id
+            type: 'FETCH_CURRENT_PROGRAM', 
+            payload: currentProgram.programs_id   
         });
-    // }
+    }
 }, [currentProgram.programs_id]);
 
   return (
@@ -64,13 +66,11 @@ function HomePage() {
           ))}
         </ul>
 
-
-
-      {currentProgram ? (
+      {!currentProgram ? (
         <Button variant = 'oulined'>
           	{/* this ID is being hard coded for now, make it dynamic */}
           	{/* <Link to = {`/program/${currentProgram[0].programs_id}`}> */}
-		        <Link to = {`/program/1`}>
+		        <Link to = {`/program/${currentProgram.programs_id}`}>
 			        Go to my program
 		        </Link>
 	      </Button>

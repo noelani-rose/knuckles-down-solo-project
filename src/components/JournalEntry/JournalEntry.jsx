@@ -14,7 +14,6 @@ function JournalEntry () {
                 ))}
 
             </ul>
-            Journal Entires
         </div>
     )
 }
