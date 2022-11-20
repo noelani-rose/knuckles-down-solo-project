@@ -46,40 +46,46 @@ function HomePage() {
 
       <h2>Welcome, {user.username}!</h2>
       {!currentProgram ? (
-        <p>Your current program: {currentProgram[0].name}</p>
+        <>
+          <p>No program selected yet</p>
+          <p>{user.experience} lifter</p>
+          Your personsonal records are
+          <ul>
+            {personalRecords.map(pr => (
+              <li key = {pr}>
+                {pr}
+              </li>
+            ))}
+          </ul>
+        <Button variant = 'outlined' onClick = {chooseProgram}>
+		      Choose a Program
+	      </Button>
+        </>
+
       ) : (
-        <p>I don't have a program :(</p>
-      )}
-
-      <p>Your ID is: {user.id}</p>
-      {/* <p>Your Program is: {currentProgram[0].name}</p> */}
-      {/* <p>This programs Experience Level is: {currentProgram[0].experience_level}</p> */}
-      <p>Your experience level is: {user.experience}</p>
-
-      {/* <ul> */}
-        Your personsonal records are: 
-        <ul>
-          {personalRecords.map(pr => (
-            <li key = {pr}>
-              {pr}
-            </li>
-          ))}
-        </ul>
-
-      {!currentProgram ? (
+        <>
+          <p>{user.experience} lifter</p>
+          <p>Your current program is {currentProgram[0].name}</p>
+          Your personsonal records are
+          <ul>
+            {personalRecords.map(pr => (
+              <li key = {pr}>
+                {pr}
+              </li>
+            ))}
+          </ul>
         <Button variant = 'oulined'>
           	{/* this ID is being hard coded for now, make it dynamic */}
           	{/* <Link to = {`/program/${currentProgram[0].programs_id}`}> */}
-		        <Link to = {`/program/${currentProgram.programs_id}`}>
+		        <Link to = {`/program/${currentProgram[0].programs_id}`}>
 			        Go to my program
 		        </Link>
 	      </Button>
-      ) : (
-	      <Button variant = 'outlined' onClick = {chooseProgram}>
-		      Choose a Program
-	      </Button>
+        </>
+        
       )}
 
+      <p>Your ID is: {user.id}</p>
       
       {/* <CameraAccess /> */}
       <br/>

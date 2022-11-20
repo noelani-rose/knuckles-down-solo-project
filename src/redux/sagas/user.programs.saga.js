@@ -42,7 +42,7 @@ function* fetchProgramExercises (action) {
   const response = yield axios.get (`/api/exercises/program/${action.payload.programId}/week/${action.payload.weekId}/day/${action.payload.dayId}`, config)
 
   yield put({ type: 'SET_PROGRAM_EXERCISES', payload: response.data})
-  // console.log('what exercises am i getting back?', response.data) 
+  console.log('what exercises am i getting back from server, on saga page?', response.data) 
   } catch (error) {
       console.log('error getting exercises for that day back',error)
   }

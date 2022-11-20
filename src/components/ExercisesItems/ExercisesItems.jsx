@@ -14,6 +14,7 @@ import AutoStoriesIcon from '@mui/icons-material/AutoStories';
 import Stack from '@mui/material/Stack';
 import Snackbar from '@mui/material/Snackbar';
 import MuiAlert from '@mui/material/Alert';
+import { LocalDining } from '@mui/icons-material';
 
 
 
@@ -91,8 +92,8 @@ function ExercisesItems ({programName}) {
     return(
         <>
             <ul>
-                {exercises[0].exercises.map(exercise => (
-                    <li key = {exercise.id}>
+                {exercises.map(exercise => (
+                    <li key = {exercise.name}>
                         {exercise.name}:
                         <CheckSkipBox exercises={exercises}/> <br/>
                         {exercise.rep_scheme} <br/>
