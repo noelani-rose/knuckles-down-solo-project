@@ -14,7 +14,7 @@ import AutoStoriesIcon from '@mui/icons-material/AutoStories';
 import Stack from '@mui/material/Stack';
 import Snackbar from '@mui/material/Snackbar';
 import MuiAlert from '@mui/material/Alert';
-import { LocalDining } from '@mui/icons-material';
+import Swal from 'sweetalert2';
 
 
 
@@ -81,14 +81,26 @@ function ExercisesItems ({programName}) {
         setOpenAlert(false);
       };
 
-    if (exercises == undefined){
-        return(
-            <div>Loading...</div>
-        )
-    }
-    // else {
-        const week = exercises[0].week
-        const day = exercises[0].day
+
+      const openSweetAlert = () => {
+        Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            title: 'Nice Work!',
+            showConfirmButton: false,
+            timer: 1500
+          })
+      }
+
+      const dayComplete = () => {
+        dispatch({
+            type: 'DAY_COMPLETE',
+            action: exercises.id 
+        })
+      }
+
+    const week = exercises[0].week
+    const day = exercises[0].day
     return(
         <>
             <ul>
@@ -144,6 +156,10 @@ function ExercisesItems ({programName}) {
                             </Alert>
                         </Snackbar>
                     </Stack>
+
+                    <Button sx = {{width: '90px'}} variant = "contained" onClick = {openSweetAlert}>
+                        Finish
+                    </Button>
             </div>
         </>
     )

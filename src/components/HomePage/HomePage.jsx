@@ -9,14 +9,60 @@ import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 
 
+const DefaultRender = ({user, personalRecords, chooseProgram}) => {
+  return(
+  <>
+    <p>No program selected yet</p>
+    <p>{user.experience} lifter</p>
+    Your personsonal records are
+    <ul>
+      {personalRecords.map(pr => (
+        <li key = {pr}>
+          {pr}
+        </li>
+      ))}
+    </ul>
+    <Button variant = 'outlined' onClick = {chooseProgram}>
+      Choose a Program
+    </Button>
+  </>
+  )
+}
+
+
+const ProgramRender = ({user, personalRecords, chooseProgram, currentProgram}) => {
+  return(
+    <>
+      <p>{user.experience} lifter</p>
+      <p>Your current program is {currentProgram.name}</p>
+      Your personsonal records are
+      <ul>
+        {personalRecords.map(pr => (
+          <li key = {pr}>
+            {pr}
+          </li>
+        ))}
+      </ul>
+      <Button variant = 'oulined'>
+          {/* this ID is being hard coded for now, make it dynamic */}
+          <Link to = {`/program/${currentProgram.programs_id}`}>
+            Go to my program
+          </Link>
+      </Button>
+    </>
+  )
+}
+
 
 function HomePage() {
-  // this component doesn't do much to start, just renders some user reducer info to the DOM
   const history = useHistory();
   const dispatch = useDispatch()
   const user = useSelector((store) => store.user);
-  const currentProgram = useSelector((store) => store.currentProgram)
+  const currentProgram = useSelector(({currentProgram}) => currentProgram.currentProgram)
+  const loading = useSelector(({currentProgram}) => currentProgram.loading)
+
   // console.log('whats the id rn', currentProgram[0].name)
+  console.log('THE CURRENT PROGRAM IS!!!!!!!!!', currentProgram)
 
 
   const chooseProgram = () => {
@@ -32,66 +78,35 @@ function HomePage() {
 
 
   useEffect(() => {
-    if (currentProgram){
-    console.log('in use effect on home page')
+    if (!currentProgram){
+      console.log('THERE IS NO CURRENT PROGRAM')
         dispatch({
-            type: 'FETCH_CURRENT_PROGRAM', 
-            payload: currentProgram.programs_id   
+            type: 'FETCH_USER_PROGRAM'  
         });
+
     }
-}, [currentProgram.programs_id]);
+}, [currentProgram]);
+
+
+  const body = !currentProgram ? (
+    <DefaultRender user = {user} personalRecords = {personalRecords} chooseProgram = {chooseProgram} />
+   ) : (
+    <ProgramRender user = {user} personalRecords = {personalRecords} chooseProgram = {chooseProgram} currentProgram = {currentProgram}/>
+  )
 
   return (
     <div className="container">
 
       <h2>Welcome, {user.username}!</h2>
-      {!currentProgram ? (
-        <>
-          <p>No program selected yet</p>
-          <p>{user.experience} lifter</p>
-          Your personsonal records are
-          <ul>
-            {personalRecords.map(pr => (
-              <li key = {pr}>
-                {pr}
-              </li>
-            ))}
-          </ul>
-        <Button variant = 'outlined' onClick = {chooseProgram}>
-		      Choose a Program
-	      </Button>
-        </>
 
-      ) : (
-        <>
-          <p>{user.experience} lifter</p>
-          <p>Your current program is {currentProgram[0].name}</p>
-          Your personsonal records are
-          <ul>
-            {personalRecords.map(pr => (
-              <li key = {pr}>
-                {pr}
-              </li>
-            ))}
-          </ul>
-        <Button variant = 'oulined'>
-          	{/* this ID is being hard coded for now, make it dynamic */}
-          	{/* <Link to = {`/program/${currentProgram[0].programs_id}`}> */}
-		        <Link to = {`/program/${currentProgram[0].programs_id}`}>
-			        Go to my program
-		        </Link>
-	      </Button>
-        </>
-        
-      )}
+      {loading ? (
+        <h1>Loading...</h1>
+      ):(
+        body
+      )} 
 
-      <p>Your ID is: {user.id}</p>
-      
-      {/* <CameraAccess /> */}
-      <br/>
       <LogOutButton className="btn" />
     </div>
-
   );
 } 
 

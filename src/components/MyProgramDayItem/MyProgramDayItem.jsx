@@ -23,7 +23,6 @@ function MyProgramDayItem () {
             }
         })
     }, [params.programId, params.weekId])
-    // took out params.programId
 
     return (
         <>

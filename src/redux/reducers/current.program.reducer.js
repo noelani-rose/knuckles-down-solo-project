@@ -1,9 +1,19 @@
-const currentProgramReducer = (state = [], action) => {
+const DEFAULT_STATE = {
+  loading: false
+}
+
+const currentProgramReducer = (state = DEFAULT_STATE, action) => {
   console.log('what is the state here at current programs reducer', action.payload)
     switch (action.type) {
-      case 'SET_CURRENT_PROGRAM':
-        return action.payload;
-      default:
+      case 'SET_USER_PROGRAM':
+        const currentProgram = action.payload[0]
+        const newState = { ...state, currentProgram, loading: false }
+        return newState;
+      case 'START_GET_USER_PROGRAM':
+        return {...state, loading: true};
+      case 'UNSET_USER':
+        return DEFAULT_STATE
+      default: 
         return state    
     }
   };

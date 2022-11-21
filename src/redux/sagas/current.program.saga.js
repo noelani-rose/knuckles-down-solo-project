@@ -7,12 +7,15 @@ const config = {
     withCredentials: true,
 }
 
-function* fetchCurrentProgram () {
+function* fetchUserProgram () {
     try{
+        yield put ({
+          type: 'START_GET_USER_PROGRAM'
+        })
         const response = yield axios.get(`/api/user/myProgram/`, config);
         console.log('am i gettin a response from the server', response)
         yield put({
-          type: 'SET_CURRENT_PROGRAM',
+          type: 'SET_USER_PROGRAM',
           payload: response.data
         })
       } catch (error) {
@@ -22,8 +25,8 @@ function* fetchCurrentProgram () {
 
 
 
-function* currentProgramSaga () {
-    yield takeLatest('FETCH_CURRENT_PROGRAM', fetchCurrentProgram);
+function* currentUserSaga () {
+    yield takeLatest('FETCH_USER_PROGRAM', fetchUserProgram);
 }
 
-export default currentProgramSaga
+export default currentUserSaga
