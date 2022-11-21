@@ -13,7 +13,7 @@ function MyProgramDayItem () {
     console.log('what is program id params on DAY PAGE', params.programId)
 //     exercises = exercises[exercises.length -1].exercises;
 
-
+// 
     useEffect(() => {
         dispatch({
             type: 'FETCH_PROGRAM_DAYS', 

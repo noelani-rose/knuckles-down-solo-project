@@ -7,8 +7,6 @@ import { Button } from "@mui/material";
 
 
 function CheckSkipBox ({exercises}) {
-    // console.log('exercises in check skip box function are', exercises[0].exercises)
-
     const [done, setDone] = useState(false);
     const [skipped, setSkipped] = useState(false)
 
@@ -23,9 +21,6 @@ function CheckSkipBox ({exercises}) {
         console.log('skipped', skipped)
         setDone(false)
     };
-
-
-
 
     return (
         <>

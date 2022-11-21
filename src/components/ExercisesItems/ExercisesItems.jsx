@@ -22,7 +22,6 @@ const Alert = React.forwardRef(function Alert(props, ref) {
     return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
   });
 
-
 function ExercisesItems ({programName}) {
     const [openAlert, setOpenAlert] = React.useState(false);
     const params = useParams();
@@ -92,6 +91,19 @@ function ExercisesItems ({programName}) {
           })
       }
 
+      const addExerciseStatus = () => {
+        dispatch({
+            // loop through the exercise ids, their week, day, and status, post multiple
+            type: 'ADD_EXERCISE_STATUS',
+            payload: {
+                exerciseId: exercises[0].id, // grab all exercises id
+                weekId: exercises[0].week, // grab week number
+                dayId: exercises[0].day, // grab day number
+                exerciseStatus, // grab status for all exercises 
+            }
+          })
+      }
+
       const dayComplete = () => {
         dispatch({
             type: 'DAY_COMPLETE',
@@ -99,8 +111,6 @@ function ExercisesItems ({programName}) {
         })
       }
 
-    const week = exercises[0].week
-    const day = exercises[0].day
     return(
         <>
             <ul>
@@ -114,52 +124,56 @@ function ExercisesItems ({programName}) {
                     </li>
                 ))}
             </ul>
-            <Button variant = "text" onClick = {() => handleClickOpen(week, day)}
+            {/* instead of passing in week, day
+            pass in exercises[0].week, exercises[0].day */}
+            <Button variant = "text" onClick = {() => handleClickOpen(exercises[0].week, exercises[0].day)}
                 sx = {{height: '80px'}}> Add a Journal Entry&nbsp;&nbsp;
                 <AutoStoriesIcon fontSize='large'/>
             </Button>
             <div>
-                    <Dialog open={open} onClose={handleClose}>
-                        <DialogTitle>How was training today?</DialogTitle>
-                        <DialogContentText>
-                            Week {journal.week} day {journal.day} of {programName}
-                        </DialogContentText>
-                        <Box
-                            component="form"
-                            sx={{
-                            '& .MuiTextField-root': { m: 1, width: '50ch' },
-                            }}
-                            noValidate
-                            autoComplete="off"
-                        >
-                            <div>
-                                <TextField
-                                id="filled-multiline-flexible"
-                                placeholder="Journal Entry"
-                                multiline
-                                maxRows={10}
-                                value={journal.entry}
-                                onChange={handleChange}
-                                variant="filled"
-                                />
-                            </div>
+                <Dialog open={open} onClose={handleClose}>
+                    <DialogTitle>How was training today?</DialogTitle>
+                    <DialogContentText>
+                        Week {journal.week} day {journal.day} of {programName}
+                    </DialogContentText>
+                    <Box
+                        component="form"
+                        sx={{
+                        '& .MuiTextField-root': { m: 1, width: '50ch' },
+                        }}
+                        noValidate
+                        autoComplete="off"
+                    >
+                    <div>
+                        <TextField
+                        id="filled-multiline-flexible"
+                        placeholder="Journal Entry"
+                        multiline
+                        maxRows={10}
+                        value={journal.entry}
+                        onChange={handleChange}
+                        variant="filled"
+                        />
+                    </div>
                      </Box>
-                    <DialogActions>
-                        <Button onClick={handleClose}>Close</Button>
-                        <Button onClick={addJournalEntry}>Add Entry</Button>
-                    </DialogActions>
-                    </Dialog>
-                    <Stack spacing={2} sx={{ width: '100%' }}>
-                        <Snackbar open={openAlert} autoHideDuration={6000} onClose={handleAlertClose}>
-                            <Alert onClose={handleAlertClose} severity="success" sx={{ width: '100%' }}>
-                                Your entry has been saved!
-                            </Alert>
-                        </Snackbar>
-                    </Stack>
+                <DialogActions>
+                    <Button onClick={handleClose}>Close</Button>
+                    <Button onClick={addJournalEntry}>Add Entry</Button>
+                </DialogActions>
+                </Dialog>
+                <Stack spacing={2} sx={{ width: '100%' }}>
+                    <Snackbar open={openAlert} autoHideDuration={6000} onClose={handleAlertClose}>
+                        <Alert onClose={handleAlertClose} severity="success" sx={{ width: '100%' }}>
+                            Your entry has been saved!
+                        </Alert>
+                    </Snackbar>
+                </Stack>
 
-                    <Button sx = {{width: '90px'}} variant = "contained" onClick = {openSweetAlert}>
-                        Finish
-                    </Button>
+                <Button sx = {{width: '90px'}} 
+                variant = "contained" 
+                onClick = {openSweetAlert}>
+                    Finish
+                </Button>
             </div>
         </>
     )
