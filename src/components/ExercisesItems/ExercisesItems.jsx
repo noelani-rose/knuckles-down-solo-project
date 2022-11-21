@@ -127,7 +127,7 @@ function ExercisesItems ({programName}) {
                         Notes: {exercise.notes} <br/>
     
                     </li>
-                    <CheckSkipBox exercises={exercises}/> <br/>
+                    <CheckSkipBox exercise={exercise}/> <br/>
                     </div>
                 ))}
             </ul>

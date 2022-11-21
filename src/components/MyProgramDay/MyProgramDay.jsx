@@ -29,7 +29,7 @@ function MyProgramDay () {
                 <h1>Loading...</h1>
             ): (
                 <>
-                    <h1>Current Program: {currentProgram.name}</h1>
+                    <h1>{currentProgram.name}</h1>
                     <MyProgramDayItem />
                 </>
             )}

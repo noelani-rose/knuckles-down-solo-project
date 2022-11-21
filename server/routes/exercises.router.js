@@ -49,8 +49,6 @@ AND "programs_exercises".program_id = $4
 ORDER BY "week", "day", "exercises".id;
 `;
 
-  
-
   pool.query(queryText, sqlParams)
   .then(dbResult => {
     res.send(dbResult.rows)

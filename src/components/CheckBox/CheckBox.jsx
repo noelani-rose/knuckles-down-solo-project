@@ -13,13 +13,13 @@ import { useSelector } from "react-redux";
 
 
 
-function CheckSkipBox ({exercises}) {
-    console.log('what is exercise for the checkbox', exercises)
+function CheckSkipBox ({exercise}) {
+    console.log('what is exercise for the checkbox', exercise)
     const dispatch = useDispatch()
     const user = useSelector(store => store.user)
     const currentProgram = useSelector(store => store.currentProgram)
-    console.log('current program is', currentProgram.currentProgram.programs_id)
-    console.log('user is', user)
+
+    // console.log('exercise id im trying to send over', exerciseId)
 
     // const [done, setDone] = useState(false);
     // const [skipped, setSkipped] = useState(false)
@@ -36,17 +36,23 @@ function CheckSkipBox ({exercises}) {
     //     setDone(false)
     // };
 
+    // for (let exercise of exercises){
+    //     console.log('exercises id is', exercise.id)
+    //     setExerciseId(exercise.id)
+    // }
 
-
+    console.log('ecerca;slkdfjasldfkj id is', exercise.id)
 
     const addExerciseStatus = (event) => {
         const exerciseStatus = {
             user_id: user.id,
             program_id: currentProgram.currentProgram.programs_id,
-            week: exercises[0].week,
-            day: exercises[0].day,
+            exercise_id: exercise.id,
+            week: exercise.week,
+            day: exercise.day,
             status: event.target.value 
         }
+        console.log('exercises to update', exerciseStatus)
         dispatch({
             type: 'UPDATE_EXERCISE_STATUS',
             payload: exerciseStatus
@@ -58,7 +64,7 @@ function CheckSkipBox ({exercises}) {
             <FormControl onSubmit = {addExerciseStatus}>
                 <RadioGroup row aria-labelledby="demo-row-radio-buttons-group-label"
                     name="row-radio-buttons-group">
-                    <FormControlLabel value="Complete" control={<Radio />} onChange = {addExerciseStatus} label="Completed" />
+                    <FormControlLabel value="Completed" control={<Radio />} onChange = {addExerciseStatus} label="Completed" />
                     <FormControlLabel value="Skipped" control={<Radio />} onChange = {addExerciseStatus} label="Skipped" />
                 </RadioGroup>
             </FormControl>

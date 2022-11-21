@@ -50,7 +50,7 @@ function MyProgramDayItem () {
         {days.map(day => (
             <Link id="RouterNavLink" to = 
             {`/program/${params.programId}/week/${params.weekId}/day/` + day.day} key = {day.day}>
-            <Box sx = {{ml: 50, my: 3, display: 'inline-block', boxShadow: 5}}>
+            <Box sx = {{ml: 17, my: 3, display: 'inline-block', boxShadow: 5}}>
                 <Card sx={{ maxWidth: 400,textAlign: 'center'}} variant = "outlined">
                     <CardContent>
                         <Typography variant="h5" component="div">

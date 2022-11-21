@@ -12,7 +12,7 @@ import { useDispatch } from 'react-redux';
 const DefaultRender = ({user, personalRecords, chooseProgram}) => {
   return(
     <>
-      <p>No program selected yet</p>
+      <h3>No program selected yet!</h3>
       <h3>{user.experience} lifter</h3>
       Your personsonal records are
       <ul>
