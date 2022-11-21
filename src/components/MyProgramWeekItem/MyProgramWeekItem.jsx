@@ -2,6 +2,15 @@ import { Link } from 'react-router-dom';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
+
+import Box from '@mui/material/Box';
+import Card from '@mui/material/Card';
+import CardActions from '@mui/material/CardActions';
+import CardContent from '@mui/material/CardContent';
+import Button from '@mui/material/Button';
+import Typography from '@mui/material/Typography';
+
+
 function MyProgramWeekItem() {
     const dispatch = useDispatch();
     const weeks = useSelector(store => store.week)
@@ -17,9 +26,36 @@ function MyProgramWeekItem() {
         })
     }, [programId])
 
+    const bull = (
+        <Box
+          component="span"
+          sx={{ display: 'inline-block', mx: '2px', transform: 'scale(0.8)' }}
+        >
+          •
+        </Box>
+      );
 
     return(
         <>
+        {weeks.weeks.map(week => (
+        <Box sx = {{ml: 50, my: 3}}>
+         <Card sx={{ maxWidth: 200,textAlign: 'center'}} variant = "outlined">
+        <CardContent>
+         <Typography variant="h5" component="div">
+         WEEK {bull} {week.week}
+         </Typography>
+        <Typography sx={{ mb: 1.5 }} color="text.secondary">
+        Incomplete
+        </Typography>
+                <Link id="RouterNavLink" to=
+                {`/program/${programId}/week/` + week.week} key = {week.week} >        
+                <div>View Days</div>
+                </Link>
+  
+        </CardContent>
+        </Card>
+        </Box>
+        ))}
             {weeks.weeks.map(week => (
                 <Link id="RouterNavLink" to=
                 {`/program/${programId}/week/` + week.week} key = {week.week} >        

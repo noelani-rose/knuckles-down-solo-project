@@ -113,6 +113,11 @@ function ExercisesItems ({programName}) {
 
     return(
         <>
+    
+
+
+
+
             <ul>
                 {exercises.map(exercise => (
                     <li key = {exercise.name}>

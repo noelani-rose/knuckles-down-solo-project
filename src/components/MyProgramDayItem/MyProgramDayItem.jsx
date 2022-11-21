@@ -3,6 +3,13 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom';
 
+import Box from '@mui/material/Box';
+import Card from '@mui/material/Card';
+import CardActions from '@mui/material/CardActions';
+import CardContent from '@mui/material/CardContent';
+import Button from '@mui/material/Button';
+import Typography from '@mui/material/Typography';
+
 
 function MyProgramDayItem () {
     const params = useParams()
@@ -11,9 +18,17 @@ function MyProgramDayItem () {
     // days = days[days.length -1]
     console.log('what is week id params on DAY PAGE', params.weekId)
     console.log('what is program id params on DAY PAGE', params.programId)
-//     exercises = exercises[exercises.length -1].exercises;
 
-// 
+
+    const bull = (
+        <Box
+          component="span"
+          sx={{ display: 'inline-block', mx: '2px', transform: 'scale(0.8)' }}
+        >
+          •
+        </Box>
+      );
+
     useEffect(() => {
         dispatch({
             type: 'FETCH_PROGRAM_DAYS', 
@@ -24,14 +39,29 @@ function MyProgramDayItem () {
         })
     }, [params.programId, params.weekId])
 
+
+
+
     return (
         <>
-            {days.map(day => (
+        {days.map(day => (
+        <Box sx = {{ml: 50, my: 3}}>
+            <Card sx={{ maxWidth: 200,textAlign: 'center'}} variant = "outlined">
+                <CardContent>
+                    <Typography variant="h5" component="div">
+                    DAY {bull} {day.day}
+                    </Typography>
+                <Typography sx={{ mb: 1.5 }} color="text.secondary">
+                Incomplete
+                </Typography>
                 <Link id="RouterNavLink" to = 
-                {`/program/${params.programId}/week/${params.weekId}/day/` + day.day} key = {day.day}>
-                <div>{day.day}</div>
+                    {`/program/${params.programId}/week/${params.weekId}/day/` + day.day} key = {day.day}>
+                    <div>Start lifting</div>
                 </Link>
-            ))}
+                </CardContent>
+            </Card>
+        </Box>
+        ))}
         </>
     )
 }
