@@ -117,22 +117,17 @@ function ExercisesItems ({programName}) {
 
     return(
         <>
-    
-
-
-
-   
             <ul>
                 {exercises.map(exercise => (
                     <div>
                     <br/>
-                    <li key = {exercise.name}>
+                    <li key = {exercise.id}>
                         {exercise.name}: <br/>
                         {exercise.rep_scheme} <br/>
                         Notes: {exercise.notes} <br/>
     
                     </li>
-                    <CheckSkipBox exercise={exercise}/> <br/>
+                    <CheckSkipBox exercises={exercises}/> <br/>
                     </div>
                 ))}
             </ul>

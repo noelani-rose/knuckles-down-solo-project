@@ -24,7 +24,7 @@ function Exercises () {
                 <h1>Loading...</h1>
             ): (
                 <>
-                    <h1>Current Program: {currentProgram.name}</h1>
+                    <h1>{currentProgram.name}</h1>
                     <h4>Week: {params.weekId}</h4>
                     <h4>Day: {params.dayId}</h4>
                     <ExercisesItems programName = {currentProgram.name}/>
