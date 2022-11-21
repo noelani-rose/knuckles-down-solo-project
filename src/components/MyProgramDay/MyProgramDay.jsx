@@ -30,7 +30,6 @@ function MyProgramDay () {
             ): (
                 <>
                     <h1>Current Program: {currentProgram.name}</h1>
-                        <p>Here are the list of days</p> 
                     <MyProgramDayItem />
                 </>
             )}

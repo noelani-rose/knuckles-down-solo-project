@@ -6,8 +6,8 @@ import { Button } from "@mui/material";
 
 
 
-function CheckSkipBox ({exercises}) {
-    const [done, setDone] = useState(false);
+function CheckSkipBox ({exercise}) {
+    const [done, setDone] = useState(true);
     const [skipped, setSkipped] = useState(false)
 
     const handleDoneChange = (event) => {
@@ -22,17 +22,19 @@ function CheckSkipBox ({exercises}) {
         setDone(false)
     };
 
+
+
     return (
         <>
             <Checkbox
-            id = {exercises.id}
+            id = {exercise.id}
             checked={done}
             color = "success"
             onChange={handleDoneChange}
             inputProps={{ 'aria-label': 'controlled' }}
         />
             <Checkbox
-            id = {exercises.id}
+            id = {exercise.id}
             checked={skipped}
             sx = {{
                 color: pink[800],
@@ -44,6 +46,14 @@ function CheckSkipBox ({exercises}) {
             inputProps={{ 'aria-label': 'controlled' }}
         />
       </>
+    )
+
+
+    return (
+        <ToggleButton value={exercise.status}>
+            <Option value="done">Complete</Option>
+            <Option value="skipped">Skipped</Option>
+        </ToggleButton>
     )
 }
 

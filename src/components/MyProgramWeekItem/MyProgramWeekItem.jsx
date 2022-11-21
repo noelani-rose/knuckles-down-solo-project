@@ -38,7 +38,9 @@ function MyProgramWeekItem() {
     return(
         <>
         {weeks.weeks.map(week => (
-        <Box sx = {{ml: 50, my: 3}}>
+        <Link id="RouterNavLink" to=
+        {`/program/${programId}/week/` + week.week} key = {week.week} >  
+        <Box sx = {{ml: 50, my: 3, display: 'inline-block', boxShadow: 5}}>
          <Card sx={{ maxWidth: 200,textAlign: 'center'}} variant = "outlined">
         <CardContent>
          <Typography variant="h5" component="div">
@@ -46,24 +48,14 @@ function MyProgramWeekItem() {
          </Typography>
         <Typography sx={{ mb: 1.5 }} color="text.secondary">
         Incomplete
-        </Typography>
-                <Link id="RouterNavLink" to=
-                {`/program/${programId}/week/` + week.week} key = {week.week} >        
+        </Typography>       
                 <div>View Days</div>
-                </Link>
-  
+
         </CardContent>
         </Card>
         </Box>
-        ))}
-            {weeks.weeks.map(week => (
-                <Link id="RouterNavLink" to=
-                {`/program/${programId}/week/` + week.week} key = {week.week} >        
-                {week.week}<br/>
-                </Link>
-            ))}
-    
-                
+        </Link>
+        ))}              
         </>
     )
 

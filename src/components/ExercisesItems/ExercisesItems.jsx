@@ -111,6 +111,10 @@ function ExercisesItems ({programName}) {
         })
       }
 
+      // Loop through exercises. Are all statuses done or skipped?
+      // let isDayComplete = .....
+
+
     return(
         <>
     
@@ -122,15 +126,13 @@ function ExercisesItems ({programName}) {
                 {exercises.map(exercise => (
                     <li key = {exercise.name}>
                         {exercise.name}:
-                        <CheckSkipBox exercises={exercises}/> <br/>
+                        <CheckSkipBox exercise={exercise}/> <br/>
                         {exercise.rep_scheme} <br/>
                         Notes: {exercise.notes} <br/>
                         <br/>
                     </li>
                 ))}
             </ul>
-            {/* instead of passing in week, day
-            pass in exercises[0].week, exercises[0].day */}
             <Button variant = "text" onClick = {() => handleClickOpen(exercises[0].week, exercises[0].day)}
                 sx = {{height: '80px'}}> Add a Journal Entry&nbsp;&nbsp;
                 <AutoStoriesIcon fontSize='large'/>

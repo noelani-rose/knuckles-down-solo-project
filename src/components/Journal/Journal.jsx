@@ -15,7 +15,7 @@ function Journal () {
 
     return(
         <div>
-            Journal...
+         
             <JournalEntry />
         </div>
     )

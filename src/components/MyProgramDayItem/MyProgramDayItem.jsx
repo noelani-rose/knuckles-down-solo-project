@@ -40,28 +40,30 @@ function MyProgramDayItem () {
     }, [params.programId, params.weekId])
 
 
-
+      // Loop through exercises. Are all statuses done or skipped?
+      // let isDayComplete = .....
 
     return (
         <>
         {days.map(day => (
-        <Box sx = {{ml: 50, my: 3}}>
-            <Card sx={{ maxWidth: 200,textAlign: 'center'}} variant = "outlined">
-                <CardContent>
-                    <Typography variant="h5" component="div">
-                    DAY {bull} {day.day}
+            <Link id="RouterNavLink" to = 
+            {`/program/${params.programId}/week/${params.weekId}/day/` + day.day} key = {day.day}>
+            <Box sx = {{ml: 50, my: 3, display: 'inline-block', boxShadow: 5}}>
+                <Card sx={{ maxWidth: 200,textAlign: 'center'}} variant = "outlined">
+                    <CardContent>
+                        <Typography variant="h5" component="div">
+                        DAY {bull} {day.day}
+                        </Typography>
+                    <Typography sx={{ mb: 1.5 }} color="text.secondary">
+                    Incomplete
                     </Typography>
-                <Typography sx={{ mb: 1.5 }} color="text.secondary">
-                Incomplete
-                </Typography>
-                <Link id="RouterNavLink" to = 
-                    {`/program/${params.programId}/week/${params.weekId}/day/` + day.day} key = {day.day}>
-                    <div>Start lifting</div>
-                </Link>
-                </CardContent>
-            </Card>
-        </Box>
+                        <div>Start lifting</div>
+                    </CardContent>
+                </Card>
+            </Box>
+            </Link>
         ))}
+           
         </>
     )
 }
