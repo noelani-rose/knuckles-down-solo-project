@@ -61,7 +61,7 @@ function CheckSkipBox ({exercise}) {
 
     return (
         <>
-            <FormControl onSubmit = {addExerciseStatus}>
+            <FormControl>
                 <RadioGroup row aria-labelledby="demo-row-radio-buttons-group-label"
                     name="row-radio-buttons-group">
                     <FormControlLabel value="Completed" control={<Radio />} onChange = {addExerciseStatus} label="Completed" />
@@ -88,14 +88,6 @@ function CheckSkipBox ({exercise}) {
             inputProps={{ 'aria-label': 'controlled' }}
         /> */}
       </>
-    )
-
-
-    return (
-        <ToggleButton value={exercise.status}>
-            <Option value="done">Complete</Option>
-            <Option value="skipped">Skipped</Option>
-        </ToggleButton>
     )
 }
 

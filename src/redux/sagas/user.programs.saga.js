@@ -48,11 +48,23 @@ function* fetchProgramExercises (action) {
   }
 }
 
+function* updateExerciseStatus (action) {
+  try{
+    console.log('whats the payload at saga when updating exercise status', action.payload)
+
+    const response = yield axios.put('/api/exercises/update', action.payload, config)
+    
+    yield put({ type: 'FETCH_EXERCISE_STATUS', payload: response.data })
+  } catch (error) {
+    console.log('error updating exercise status', error)
+  }
+}
 
 function* userProgramSaga () {
     yield takeLatest('FETCH_PROGRAM_DAYS', fetchProgramDays);
     yield takeLatest('FETCH_PROGRAM_WEEKS', fetchProgramWeeks);
       yield takeLatest('FETCH_PROGRAM_EXERCISES', fetchProgramExercises);
+      yield takeLatest('UPDATE_EXERCISE_STATUS', updateExerciseStatus)
 }
 
 export default userProgramSaga;
