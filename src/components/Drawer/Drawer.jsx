@@ -44,7 +44,7 @@ function DrawerTemp () {
     
       const links = [
         { to: '/user', name: 'Home', icon: <HomeIcon /> },
-        // { to: `/program/${currentProgram[0].programs_id}`, name: 'My Program', icon: <FitnessCenterIcon /> },
+        { to: `/program/${currentProgram.programs_id}`, name: 'My Program', icon: <FitnessCenterIcon /> },
         { to: '/journal', name: 'My Journal', icon: <AutoStoriesIcon /> },
         { to: '/progress', name: 'My Progress', icon: <TrendingUpIcon /> }
       ]

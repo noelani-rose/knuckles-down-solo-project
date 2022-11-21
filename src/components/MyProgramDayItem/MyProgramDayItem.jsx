@@ -9,6 +9,8 @@ import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
+import FormControl from '@mui/material/FormControl';
+
 
 
 function MyProgramDayItem () {
@@ -49,21 +51,20 @@ function MyProgramDayItem () {
             <Link id="RouterNavLink" to = 
             {`/program/${params.programId}/week/${params.weekId}/day/` + day.day} key = {day.day}>
             <Box sx = {{ml: 50, my: 3, display: 'inline-block', boxShadow: 5}}>
-                <Card sx={{ maxWidth: 200,textAlign: 'center'}} variant = "outlined">
+                <Card sx={{ maxWidth: 400,textAlign: 'center'}} variant = "outlined">
                     <CardContent>
                         <Typography variant="h5" component="div">
-                        DAY {bull} {day.day}
+                            DAY {bull} {day.day}
                         </Typography>
                     <Typography sx={{ mb: 1.5 }} color="text.secondary">
-                    Incomplete
+                     Incomplete
                     </Typography>
-                        <div>Start lifting</div>
+                        <div>View Exercises</div>
                     </CardContent>
                 </Card>
             </Box>
             </Link>
-        ))}
-           
+        ))}  
         </>
     )
 }

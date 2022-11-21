@@ -11,31 +11,30 @@ import { useDispatch } from 'react-redux';
 
 const DefaultRender = ({user, personalRecords, chooseProgram}) => {
   return(
-  <>
-    <p>No program selected yet</p>
-    <p>{user.experience} lifter</p>
-    Your personsonal records are
-    <ul>
-      {personalRecords.map(pr => (
-        <li key = {pr}>
-          {pr}
-        </li>
-      ))}
-    </ul>
-    <Button variant = 'outlined' onClick = {chooseProgram}>
-      Choose a Program
-    </Button>
+    <>
+      <p>No program selected yet</p>
+      <h3>{user.experience} lifter</h3>
+      Your personsonal records are
+      <ul>
+        {personalRecords.map(pr => (
+          <li key = {pr}>
+            {pr}
+          </li>
+         ))}
+      </ul>
+      <Button variant = 'outlined' onClick = {chooseProgram}>
+        Choose a Program
+      </Button>
   </>
   )
 }
 
-
 const ProgramRender = ({user, personalRecords, chooseProgram, currentProgram}) => {
   return(
     <>
-      <p>{user.experience} lifter</p>
-      <p>Your current program is {currentProgram.name}</p>
-      Your personsonal records are
+      <h3>{user.experience} lifter</h3>
+      <h3>Your current program is: {currentProgram.name}</h3>
+      Your personsonal records are:
       <ul>
         {personalRecords.map(pr => (
           <li key = {pr}>
@@ -43,12 +42,11 @@ const ProgramRender = ({user, personalRecords, chooseProgram, currentProgram}) =
           </li>
         ))}
       </ul>
-      <Button variant = 'oulined'>
-          {/* this ID is being hard coded for now, make it dynamic */}
           <Link to = {`/program/${currentProgram.programs_id}`}>
-            Go to my program
+            <Button variant = 'outlined'>
+              Start Lifting
+            </Button>
           </Link>
-      </Button>
     </>
   )
 }
@@ -61,7 +59,6 @@ function HomePage() {
   const currentProgram = useSelector(({currentProgram}) => currentProgram.currentProgram)
   const loading = useSelector(({currentProgram}) => currentProgram.loading)
 
-  // console.log('whats the id rn', currentProgram[0].name)
   console.log('THE CURRENT PROGRAM IS!!!!!!!!!', currentProgram)
 
 
@@ -88,6 +85,14 @@ function HomePage() {
 }, [currentProgram]);
 
 
+  if (user.experience == 2){
+    user.experience = 'Advanced'
+  } else if (user.experience == 1) {
+    user.experience = 'Intermediate'
+  } else if (user.experience == 0) {
+    user.experience = 'Beginner'
+  }
+
   const body = !currentProgram ? (
     <DefaultRender user = {user} personalRecords = {personalRecords} chooseProgram = {chooseProgram} />
    ) : (
@@ -104,11 +109,11 @@ function HomePage() {
       ):(
         body
       )} 
-
-      <LogOutButton className="btn" />
+      <br/>
+      {/* <LogOutButton className="btn" /> */}
     </div>
   );
 } 
 
-// this allows us to use <App /> in index.js
+
 export default HomePage;

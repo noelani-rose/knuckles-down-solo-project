@@ -14,17 +14,17 @@ function JournalEntry () {
             {entries.map(entry => (
                 <Box>
                     <ul>
-                     <li><Card sx={{ maxWidth: 500}} >
-                    <CardContent>
-                    <Typography sx={{ mb: 1.5 }} color="text.secondary">
-                   Entry for week {entry.week} day {entry.day} of {entry.name}
-                    </Typography>
-                        <div>{entry.entry}</div>
-                    </CardContent>
-                    
-                </Card>
-                </li>
-                </ul>
+                        <li>
+                            <Card sx={{ maxWidth: 500}} >
+                                <CardContent>
+                                    <Typography sx={{ mb: 1.5 }} color="text.secondary">
+                                        Entry for week {entry.week} day {entry.day} of {entry.name}
+                                    </Typography>
+                                    <div>{entry.entry}</div>
+                                </CardContent>
+                            </Card>
+                        </li>
+                    </ul>
                 </Box>
             ))}
         </div>

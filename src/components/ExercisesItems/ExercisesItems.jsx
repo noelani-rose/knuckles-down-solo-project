@@ -121,18 +121,22 @@ function ExercisesItems ({programName}) {
 
 
 
-
+   
             <ul>
                 {exercises.map(exercise => (
+                    <div>
+                    <br/>
                     <li key = {exercise.name}>
-                        {exercise.name}:
-                        <CheckSkipBox exercise={exercise}/> <br/>
+                        {exercise.name}: <br/>
                         {exercise.rep_scheme} <br/>
                         Notes: {exercise.notes} <br/>
-                        <br/>
+    
                     </li>
+                    <CheckSkipBox exercise={exercise}/> <br/>
+                    </div>
                 ))}
             </ul>
+           
             <Button variant = "text" onClick = {() => handleClickOpen(exercises[0].week, exercises[0].day)}
                 sx = {{height: '80px'}}> Add a Journal Entry&nbsp;&nbsp;
                 <AutoStoriesIcon fontSize='large'/>
