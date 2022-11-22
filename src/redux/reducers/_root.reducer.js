@@ -8,6 +8,7 @@ import exercises from './exercises.reducer'
 import week from './week.reducer'
 import day from './day.reducer'
 import journal from './journal.reducer'
+import dayComplete from './day.complete.reducer'
 
 
 const rootReducer = combineReducers({
@@ -18,7 +19,7 @@ const rootReducer = combineReducers({
   week,
   day,
   journal,
-  // userProgram, handling weeks, days, and exercises of that user's program
+  dayComplete,
   currentProgram, // handles the user's selected program
 });
 

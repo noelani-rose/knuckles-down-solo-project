@@ -12,6 +12,7 @@ const userRouter = require('./routes/user.router');
 const programRouter = require('./routes/program.router');
 const exercisesRouter = require('./routes/exercises.router')
 const userProgramRouter = require('./routes/user.program.router')
+const completeRouter = require('./routes/complete.router')
 
 // Body parser middleware
 app.use(bodyParser.json());
@@ -29,6 +30,7 @@ app.use('/api/user', userRouter);
 app.use('/api/user/program', userProgramRouter);
 app.use('/api/program', programRouter);
 app.use('/api/exercises', exercisesRouter);
+app.use('/api/complete', completeRouter)
 
 // Serve static files
 app.use(express.static('build'));

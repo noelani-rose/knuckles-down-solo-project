@@ -4,7 +4,6 @@ const DEFAULT_STATE = {
 }
 
 const weekReducer = (state = DEFAULT_STATE, action) => {
-    console.log('what is the payload in the week reducer', action.payload);
     switch (action.type) {
         case 'SET_PROGRAM_WEEKS':
             const weeks = action.payload

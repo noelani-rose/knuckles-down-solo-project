@@ -17,6 +17,8 @@ function MyProgramDayItem () {
     const params = useParams()
     const dispatch = useDispatch()
     let days = useSelector(store => store.day)
+    const dayComplete = useSelector(store => store.dayComplete)
+    const exerciseStatus = useSelector(store => store.exercises)
     // days = days[days.length -1]
     console.log('what is week id params on DAY PAGE', params.weekId)
     console.log('what is program id params on DAY PAGE', params.programId)
@@ -39,11 +41,27 @@ function MyProgramDayItem () {
                 weekId: params.weekId
             }
         })
+        dispatch({
+            type: 'FETCH_DAY_COMPLETE'
+        })
     }, [params.programId, params.weekId])
 
-
-      // Loop through exercises. Are all statuses done or skipped?
-      // let isDayComplete = .....
+    // loop through day complete store
+    // loop through day store 
+    // if the day == day and the week == week params and complete == 'true', let dayComplete = true
+    console.log('HERES THE CURRENT WEEK', params.weekId)
+    console.log('days to compare', days)
+    console.log('isdaycomplete to compare', dayComplete)
+    const weekStringToNum = parseInt(params.weekId)
+  
+    days.forEach(day => {
+        dayComplete.forEach(complete => {
+            if(complete.week === weekStringToNum && day.day === complete.day){
+                day.isComplete = true
+            }
+        })
+    })
+    console.log('what are the days now', days)
 
     return (
         <>
@@ -57,7 +75,7 @@ function MyProgramDayItem () {
                             DAY {bull} {day.day}
                         </Typography>
                     <Typography sx={{ mb: 1.5 }} color="text.secondary">
-                     Incomplete
+                     {day.isComplete ? (<div>Complete</div>) : (<div>Incomplete</div>)}
                     </Typography>
                         <div>View Exercises</div>
                     </CardContent>

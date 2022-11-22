@@ -41,7 +41,6 @@ function CheckSkipBox ({exercise}) {
     //     setExerciseId(exercise.id)
     // }
 
-    console.log('ecerca;slkdfjasldfkj id is', exercise.id)
 
     const addExerciseStatus = (event) => {
         const exerciseStatus = {
@@ -52,11 +51,11 @@ function CheckSkipBox ({exercise}) {
             day: exercise.day,
             status: event.target.value 
         }
-        console.log('exercises to update', exerciseStatus)
-        dispatch({
-            type: 'UPDATE_EXERCISE_STATUS',
-            payload: exerciseStatus
-        })
+        // console.log('exercises to update', exerciseStatus)
+        // dispatch({
+        //     type: 'UPDATE_EXERCISE_STATUS',
+        //     payload: exerciseStatus
+        // })
     }
 
     return (
@@ -64,29 +63,10 @@ function CheckSkipBox ({exercise}) {
             <FormControl>
                 <RadioGroup row aria-labelledby="demo-row-radio-buttons-group-label"
                     name="row-radio-buttons-group">
-                    <FormControlLabel value="Completed" control={<Radio />} onChange = {addExerciseStatus} label="Completed" />
-                    <FormControlLabel value="Skipped" control={<Radio />} onChange = {addExerciseStatus} label="Skipped" />
+                    <FormControlLabel value="Completed" control={<Radio />}  onChange = {addExerciseStatus} label="Completed" />
+                    <FormControlLabel value="Skipped" control={<Radio />}  onChange = {addExerciseStatus} label="Skipped" />
                 </RadioGroup>
             </FormControl>
-            {/* <Checkbox
-            id = {exercise.id}
-            checked={done}
-            color = "success"
-            onChange={handleDoneChange}
-            inputProps={{ 'aria-label': 'controlled' }}
-        />
-            <Checkbox
-            id = {exercise.id}
-            checked={skipped}
-            sx = {{
-                color: pink[800],
-                '&.Mui-checked': {
-                color: pink[600],
-                },
-            }}
-            onChange={handleSkipChange}
-            inputProps={{ 'aria-label': 'controlled' }}
-        /> */}
       </>
     )
 }

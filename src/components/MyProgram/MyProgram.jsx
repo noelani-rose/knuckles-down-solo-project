@@ -17,6 +17,7 @@ function MyProgram () {
                 type: 'FETCH_USER_PROGRAM'  
             });
         }
+
     }, [currentProgram]);
 
 

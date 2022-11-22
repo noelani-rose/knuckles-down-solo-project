@@ -89,27 +89,21 @@ function ExercisesItems ({programName}) {
             showConfirmButton: false,
             timer: 1500
           })
-      }
-
-      const addExerciseStatus = () => {
-        dispatch({
-            // loop through the exercise ids, their week, day, and status, post multiple
-            type: 'ADD_EXERCISE_STATUS',
-            payload: {
-                exerciseId: exercises[0].id, // grab all exercises id
-                weekId: exercises[0].week, // grab week number
-                dayId: exercises[0].day, // grab day number
-                exerciseStatus, // grab status for all exercises 
-            }
-          })
+          dayComplete()
       }
 
       const dayComplete = () => {
         dispatch({
-            type: 'DAY_COMPLETE',
-            action: exercises.id 
-        })
+            type: 'ADD_DAY_COMPLETE',
+            payload: {
+                week: params.weekId,
+                day: params.dayId,
+                dayComplete: 'true'
+            } 
+          })
       }
+
+   
 
       // Loop through exercises. Are all statuses done or skipped?
       // let isDayComplete = .....

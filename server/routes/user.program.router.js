@@ -1,4 +1,5 @@
 const express = require('express');
+const { actionChannel } = require('redux-saga/effects');
 const { rejectUnauthenticated } = require('../modules/authentication-middleware');
 const pool = require('../modules/pool');
 const router = express.Router();
@@ -17,7 +18,6 @@ router.get('/:programId', rejectUnauthenticated, (req, res) => {
     `;
     pool.query(sqlText, programId)
     .then((dbResult) => {
-      console.log('what program info am i getting back from the user_programs table?', dbResult.rows)
       res.send(dbResult.rows)
     })
     .catch((error) => {
@@ -48,6 +48,25 @@ router.get('/:programId', rejectUnauthenticated, (req, res) => {
       res.sendStatus(500)
     })
   })
+
+
+  router.post('/dayComplete', (req, res) => {
+    console.log('in router post /dayComplete to mark day as complete', req.body.week, req.body.day, req.body.dayComplete)
+    const sqlText = 
+    `
+    INSERT INTO "day_complete" ("week", "day", "complete")
+    VALUES ($1, $2, $3)
+    `;
+    const sqlParams = [req.body.week, req.body.day, req.body.dayComplete]
+    pool.query(sqlText, sqlParams)
+      .then(dbResult => {
+        res.sendStatus(200)
+      })
+      .catch(error => {
+        console.log('error posting daycomplete to db', error)
+      })
+  })
+
 
 
 module.exports = router;

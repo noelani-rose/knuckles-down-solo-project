@@ -8,7 +8,6 @@ const userProgramReducer = (state = [], action) => {
             return [...state, action.payload];
         default:
             return state
-        // try to mess with this to send the data over more neatly
     }
   };
 

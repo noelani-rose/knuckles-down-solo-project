@@ -11,6 +11,7 @@ import MyProgramDayItem from '../MyProgramDayItem/MyProgramDayItem';
 function MyProgramDay () {
     const dispatch = useDispatch()
     const currentProgram = useSelector(({currentProgram}) => currentProgram.currentProgram)
+
     const loading = useSelector(({currentProgram}) => currentProgram.loading)
 
 
@@ -20,8 +21,10 @@ function MyProgramDay () {
                 type: 'FETCH_USER_PROGRAM'  
             });
         }
+
     }, [currentProgram]);
 
+   
 
     return (
         <div>

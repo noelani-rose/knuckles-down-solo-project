@@ -3,7 +3,6 @@ const DEFAULT_STATE = {
 }
 
 const currentProgramReducer = (state = DEFAULT_STATE, action) => {
-  console.log('what is the state here at current programs reducer', action.payload)
     switch (action.type) {
       case 'SET_USER_PROGRAM':
         const currentProgram = action.payload[0]

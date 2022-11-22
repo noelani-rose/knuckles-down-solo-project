@@ -1,3 +1,4 @@
+import { ControlPointSharp } from '@mui/icons-material';
 import axios from 'axios';
 import { put, takeLatest } from 'redux-saga/effects';
 
@@ -60,12 +61,48 @@ function* updateExerciseStatus (action) {
   }
 }
 
+function* fetchExerciseStatus () {
+  try{
+    console.log('trying to fetch exercise status in the SAGA')
+    const response = yield axios.get ('/api/exercises/update', config)
+
+    yield put({type: 'SET_EXERCISE_STATUS', payload: response.data})
+  } catch (error) {
+    console.log('error getting exercise status in the SAGA', error)
+  }
+
+}
+
+function* addDayComplete (action) {
+  try{
+    console.log('in add day complete function in user programs saga', action.payload)
+
+    const response = yield axios.post('/api/user/program/dayComplete', action.payload, config)
+    yield put({type: 'FETCH_DAY_COMPLETE'})
+  } catch (error) {
+    console.log('error adding the day complete, at saga', error)
+  }
+}
+
+function* fetchDayComplete () {
+  try{
+    console.log('in fetch day complete function in user programs saga')
+    const response = yield axios.get('/api/complete', config)
+    yield put({type: 'SET_DAY_COMPLETE', payload: response.data})
+  } catch (error) {
+    console.log('error fetching day complete', error)
+  }
+}
+
 function* userProgramSaga () {
     yield takeLatest('FETCH_PROGRAM_DAYS', fetchProgramDays);
     yield takeLatest('FETCH_PROGRAM_WEEKS', fetchProgramWeeks);
-      yield takeLatest('FETCH_PROGRAM_EXERCISES', fetchProgramExercises);
-      yield takeLatest('UPDATE_EXERCISE_STATUS', updateExerciseStatus)
-}
+    yield takeLatest('FETCH_PROGRAM_EXERCISES', fetchProgramExercises);
+    yield takeLatest('UPDATE_EXERCISE_STATUS', updateExerciseStatus);
+    yield takeLatest('FETCH_EXERCISE_STATUS', fetchExerciseStatus);
+    yield takeLatest('ADD_DAY_COMPLETE', addDayComplete)
+    yield takeLatest('FETCH_DAY_COMPLETE', fetchDayComplete)
+;}
 
 export default userProgramSaga;
 
