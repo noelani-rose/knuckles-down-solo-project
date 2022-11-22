@@ -64,12 +64,13 @@ ORDER BY "week", "day", "exercises".id;
 
 router.put('/update', (req, res) => {
   console.log('trying to edit this table in router with req.body', req.body)
-  const sqlParams = [ req.body.programs_id, req.body.exercise_id, req.body.week, req.body.day, req.body.status]
+  const sqlParams = [ req.body.program_id, req.body.exercise_id, req.body.week, req.body.day, req.body.status, req.user.id]
   const sqlText = 
   `
-  INSERT INTO "user_programs_exercises" ("programs_id", "programs_exercises_id", "week", "day", "status")
-  VALUES ($1, $2, $3, $4, $5)
+  INSERT INTO "user_programs_exercises" ("programs_id", "programs_exercises_id", "week", "day", "status", "user_id")
+  VALUES ($1, $2, $3, $4, $5, $6)
   ON CONFLICT ("programs_exercises_id")
+  WHERE "user_id" = $6
   DO UPDATE SET "status" = $5;
   `;
 
