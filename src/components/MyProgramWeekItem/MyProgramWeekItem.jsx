@@ -47,7 +47,7 @@ function MyProgramWeekItem() {
          WEEK {bull} {week.week}
          </Typography>
         <Typography sx={{ mb: 1.5 }} color="text.secondary">
-        Incomplete
+        {week.isComplete ? (<div>Complete</div>) : (<div>Incomplete</div>)}
         </Typography>       
                 <div>View Days</div>
 

@@ -17,6 +17,7 @@ function MyProgramDayItem () {
     const params = useParams()
     const dispatch = useDispatch()
     let days = useSelector(store => store.day)
+    let weeks = useSelector(store => store.week)
     const dayComplete = useSelector(store => store.dayComplete)
     const exerciseStatus = useSelector(store => store.exercises)
     // days = days[days.length -1]
@@ -63,21 +64,32 @@ function MyProgramDayItem () {
         })
     })
 
+
+
+    const isEveryThingComplete = (arrOfObjects) => {
+       for (let day of days){
+        if(day.isComplete !== true){
+            return false
+        }
+       }
+       return true 
+    }
+
     // if all days have property '.isComplete', dispatch this
-    days.forEach(day => {
-        if(day.hasOwnProperty('isComplete')){
-            dispatch({
-                type: 'ADD_WEEK_COMPLETE', 
-                payload: {
-                    program: params.programId,
-                    week: params.weekId, 
-                    complete: 'true'
-                }
-            })
-                } else {
-                    console.log('not all days are complete')
-                }
-         })
+    // days.forEach(day => {
+    //     if(day.hasOwnProperty('isComplete')){
+    //         dispatch({
+    //             type: 'ADD_WEEK_COMPLETE', 
+    //             payload: {
+    //                 program: params.programId,
+    //                 week: params.weekId, 
+    //                 complete: 'true'
+    //             }
+    //         })
+    //             } else {
+    //                 console.log('not all days are complete')
+    //             }
+    //      })
      
 
     return (

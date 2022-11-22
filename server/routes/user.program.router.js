@@ -10,14 +10,34 @@ router.get('/:programId', rejectUnauthenticated, (req, res) => {
     console.log('I AM IN THE ROUTER GET FUNCTION TO GET PROGRAM WEEKS')
     const sqlText = 
     `
-    SELECT DISTINCT "programs_exercises".week 
-    FROM "programs_exercises"
-    LEFT JOIN "user_programs" ON "user_programs".programs_id = "programs_exercises".program_id
-    WHERE "user_programs".programs_id = $1
-    ORDER BY "programs_exercises".week;
+    SELECT 
+    programs_exercises.week,
+    json_agg(
+      json_build_object(
+        'day', programs_exercises.day,
+        'exercise_id', programs_exercises.exercise_id,
+        'status', status
+      )
+    ) as exercises
+  FROM programs_exercises
+  LEFT JOIN user_programs_exercises 
+    ON user_programs_exercises.programs_exercises_id = programs_exercises.id
+  WHERE programs_exercises.program_id = $1
+  GROUP BY programs_exercises.week
+  ORDER BY programs_exercises.week;
+  
     `;
     pool.query(sqlText, programId)
     .then((dbResult) => {
+      for (let week of dbResult.rows) {
+        let isComplete = true;
+        for (let ex of week.exercises) {
+          if (!ex.status) {
+            isComplete = false;
+          }
+          week.isComplete = isComplete;
+        }
+      }
       res.send(dbResult.rows)
     })
     .catch((error) => {
