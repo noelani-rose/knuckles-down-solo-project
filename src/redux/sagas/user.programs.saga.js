@@ -1,6 +1,6 @@
 import { ControlPointSharp } from '@mui/icons-material';
 import axios from 'axios';
-import { put, takeLatest } from 'redux-saga/effects';
+import { put, take, takeLatest } from 'redux-saga/effects';
 
 
 const config = {
@@ -94,14 +94,37 @@ function* fetchDayComplete () {
   }
 }
 
+function* addWeekComplete (action) {
+  try{
+
+    console.log('in addweekcomplete function in saga with payload', action.payload)
+    yield axios.post ('/api/user/program/weekComplete', action.payload, config)
+    yield put ({type: 'FETCH_WEEK_COMPLETE'})
+  } catch (error) {
+    console.log('error adding the week complete at saga', error)
+  }
+}
+
+function* fetchWeekComplete () {
+  try{
+    console.log('in fetchweekcomplete function at saga')
+    const response = yield axios.get ('api/complete/week', config)
+    yield put({type: 'SET_WEEK_COMPLETE', payload: response.data})
+  } catch (error) {
+    console.log('error fetching week complete at saga', error)
+  }
+}
+
 function* userProgramSaga () {
     yield takeLatest('FETCH_PROGRAM_DAYS', fetchProgramDays);
     yield takeLatest('FETCH_PROGRAM_WEEKS', fetchProgramWeeks);
     yield takeLatest('FETCH_PROGRAM_EXERCISES', fetchProgramExercises);
     yield takeLatest('UPDATE_EXERCISE_STATUS', updateExerciseStatus);
     yield takeLatest('FETCH_EXERCISE_STATUS', fetchExerciseStatus);
-    yield takeLatest('ADD_DAY_COMPLETE', addDayComplete)
-    yield takeLatest('FETCH_DAY_COMPLETE', fetchDayComplete)
+    yield takeLatest('ADD_DAY_COMPLETE', addDayComplete);
+    yield takeLatest('FETCH_DAY_COMPLETE', fetchDayComplete);
+    yield takeLatest('ADD_WEEK_COMPLETE', addWeekComplete)
+    yield takeLatest('FETCH_WEEK_COMPLETE', fetchWeekComplete)
 ;}
 
 export default userProgramSaga;

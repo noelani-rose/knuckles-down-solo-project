@@ -96,18 +96,13 @@ function ExercisesItems ({programName}) {
         dispatch({
             type: 'ADD_DAY_COMPLETE',
             payload: {
+                program: params.programId,
                 week: params.weekId,
                 day: params.dayId,
                 dayComplete: 'true'
             } 
           })
       }
-
-   
-
-      // Loop through exercises. Are all statuses done or skipped?
-      // let isDayComplete = .....
-
 
     return(
         <>
@@ -125,7 +120,6 @@ function ExercisesItems ({programName}) {
                     </div>
                 ))}
             </ul>
-           
             <Button variant = "text" onClick = {() => handleClickOpen(exercises[0].week, exercises[0].day)}
                 sx = {{height: '80px'}}> Add a Journal Entry&nbsp;&nbsp;
                 <AutoStoriesIcon fontSize='large'/>

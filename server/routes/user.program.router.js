@@ -51,19 +51,37 @@ router.get('/:programId', rejectUnauthenticated, (req, res) => {
 
 
   router.post('/dayComplete', (req, res) => {
-    console.log('in router post /dayComplete to mark day as complete', req.body.week, req.body.day, req.body.dayComplete)
     const sqlText = 
     `
-    INSERT INTO "day_complete" ("week", "day", "complete")
-    VALUES ($1, $2, $3)
+    INSERT INTO "day_complete" ("user_id", "program", "week", "day", "complete")
+    VALUES ($1, $2, $3, $4, $5)
     `;
-    const sqlParams = [req.body.week, req.body.day, req.body.dayComplete]
+    const sqlParams = [req.user.id, req.body.program, req.body.week, req.body.day, req.body.dayComplete]
     pool.query(sqlText, sqlParams)
       .then(dbResult => {
         res.sendStatus(200)
       })
       .catch(error => {
         console.log('error posting daycomplete to db', error)
+      })
+  })
+
+  router.post('/weekComplete', (req, res) => {
+    console.log('in the router post /weekComplete to mark week as complete', req.body)
+    const sqlText = 
+    `
+    INSERT INTO "week_complete" ("user_id", "program", "week", "complete")
+    VALUES ($1, $2, $3, $4)
+    `;
+    const sqlParams = [req.user.id, req.body.program, req.body.week, req.body.complete]
+    pool.query(sqlText, sqlParams)
+      .then(dbResult => {
+        res.sendStatus(200)
+        console.log('week complete successfully posted to db')
+      }) 
+      .catch(error => {
+        console.log('error posting week complete to db', error)
+        res.sendStatus(500)
       })
   })
 

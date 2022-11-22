@@ -19,28 +19,6 @@ function CheckSkipBox ({exercise}) {
     const user = useSelector(store => store.user)
     const currentProgram = useSelector(store => store.currentProgram)
 
-    // console.log('exercise id im trying to send over', exerciseId)
-
-    // const [done, setDone] = useState(false);
-    // const [skipped, setSkipped] = useState(false)
-
-    // const handleDoneChange = (event) => {
-    //     setDone(event.target.checked);
-    //     console.log('done', done);
-    //     setSkipped(false)
-    // };
-
-    // const handleSkipChange = (event) => {
-    //     setSkipped(event.target.checked);
-    //     console.log('skipped', skipped)
-    //     setDone(false)
-    // };
-
-    // for (let exercise of exercises){
-    //     console.log('exercises id is', exercise.id)
-    //     setExerciseId(exercise.id)
-    // }
-
 
     const addExerciseStatus = (event) => {
         const exerciseStatus = {
@@ -51,11 +29,11 @@ function CheckSkipBox ({exercise}) {
             day: exercise.day,
             status: event.target.value 
         }
-        // console.log('exercises to update', exerciseStatus)
-        // dispatch({
-        //     type: 'UPDATE_EXERCISE_STATUS',
-        //     payload: exerciseStatus
-        // })
+        console.log('exercises to update', exerciseStatus)
+        dispatch({
+            type: 'UPDATE_EXERCISE_STATUS',
+            payload: exerciseStatus
+        })
     }
 
     return (

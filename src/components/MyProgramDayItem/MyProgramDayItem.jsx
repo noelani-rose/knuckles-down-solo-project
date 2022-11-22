@@ -53,7 +53,8 @@ function MyProgramDayItem () {
     console.log('days to compare', days)
     console.log('isdaycomplete to compare', dayComplete)
     const weekStringToNum = parseInt(params.weekId)
-  
+
+    // adding the property '.isComplete = true' to day array if that day is complete
     days.forEach(day => {
         dayComplete.forEach(complete => {
             if(complete.week === weekStringToNum && day.day === complete.day){
@@ -61,10 +62,27 @@ function MyProgramDayItem () {
             }
         })
     })
-    console.log('what are the days now', days)
+
+    // if all days have property '.isComplete', dispatch this
+    days.forEach(day => {
+        if(day.hasOwnProperty('isComplete')){
+            dispatch({
+                type: 'ADD_WEEK_COMPLETE', 
+                payload: {
+                    program: params.programId,
+                    week: params.weekId, 
+                    complete: 'true'
+                }
+            })
+                } else {
+                    console.log('not all days are complete')
+                }
+         })
+     
 
     return (
         <>
+        
         {days.map(day => (
             <Link id="RouterNavLink" to = 
             {`/program/${params.programId}/week/${params.weekId}/day/` + day.day} key = {day.day}>
