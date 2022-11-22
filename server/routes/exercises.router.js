@@ -8,23 +8,6 @@ router.get('/program/:programId/week/:weekId/day/:dayId', rejectUnauthenticated,
 
   const sqlParams = [req.user.id, req.params.weekId, req.params.dayId, req.params.programId]
   const queryText = 
-// `
-// SELECT DISTINCT
-// "exercises"."name", "exercises".rep_scheme, "exercises".notes, 
-//  "programs_exercises"."week",
-//  "programs_exercises"."day", "exercises".id
-//  FROM
-//  "programs"
-//  LEFT JOIN "programs_exercises" ON "programs_exercises"."program_id" = "programs"."id"
-//  LEFT JOIN "exercises" ON "programs_exercises"."exercise_id" = "exercises"."id"
-//  LEFT JOIN "user_programs" ON "user_programs"."programs_id" = "programs"."id"
-//  WHERE "programs_exercises"."week" = $1 
-//  AND "programs_exercises"."day" = $2 
-//  AND "programs_exercises".program_id = $3
-//  GROUP BY "programs"."id", "programs_exercises"."week",
-//  "programs_exercises"."day", "exercises".rep_scheme, "exercises".notes, "exercises"."name","exercises".id
-//  ORDER BY "week", "day", "exercises".id;
-// `;
 `
 SELECT
 "exercises".id,
@@ -64,19 +47,14 @@ ORDER BY "week", "day", "exercises".id;
 
 router.put('/update', (req, res) => {
   console.log('trying to edit this table in router with req.body', req.body)
-  const sqlParams = [req.body.program_id, req.body.exercise_id, req.body.week, req.body.day, req.body.status]
+  const sqlParams = [req.user.id, req.body.week, req.body.day, req.body.status, req.body.program_id, req.body.exercise_id]
   const sqlText = 
-  // `
-  // INSERT INTO "user_programs_exercises" ("programs_id", "programs_exercises_id", "week", "day", "status")
-  // VALUES ($1, $2, $3, $4, $5)
-  // ON CONFLICT ("programs_exercises_id")
-  // DO UPDATE SET "status" = $5;
-  // `;
   `
-  INSERT INTO "user_programs_exercises" ( "programs_id", "programs_exercises_id", "week", "day", "status")
-  VALUES ($1, $2, $3, $4, $5)
+  INSERT INTO "user_programs_exercises" ("user_id", "week", "day", "status", "programs_id", "programs_exercises_id")
+  VALUES ($1, $2, $3, $4, $5, $6)
   ON CONFLICT ("programs_exercises_id")
-  DO UPDATE SET "status" = $5;
+  DO UPDATE SET "status" = $4
+  WHERE "user_programs_exercises"."user_id" = $1;
   `;
 
   pool.query(sqlText, sqlParams)
@@ -92,9 +70,10 @@ router.get('/update', (req, res) => {
   console.log('in the router trying to get the exercise status')
   const sqlText = 
   `
-  SELECT * FROM "user_programs_exercises";
+  SELECT * FROM "user_programs_exercises"
+  WHERE user_id = $1;
   `;
-  pool.query(sqlText)
+  pool.query(sqlText, [req.user.id])
     .then(dbResult => {
       res.send(dbResult.rows)
       console.log('whats the status of exercises coming back from db', dbResult.rows)

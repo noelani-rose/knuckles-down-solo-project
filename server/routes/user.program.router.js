@@ -86,6 +86,8 @@ router.get('/:programId', rejectUnauthenticated, (req, res) => {
       })
   })
 
+
+  // can probably be deleted
   router.post('/weekComplete', (req, res) => {
     console.log('in the router post /weekComplete to mark week as complete', req.body)
     const sqlText = 

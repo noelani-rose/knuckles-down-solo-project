@@ -14,7 +14,6 @@ import Typography from '@mui/material/Typography';
 function MyProgramWeekItem() {
     const dispatch = useDispatch();
     const weeks = useSelector(store => store.week)
-    console.log('weeks on the week item view', weeks)
     const currentProgramId = useSelector(store => store.currentProgram.currentProgram)
     const programId = currentProgramId.programs_id
 
