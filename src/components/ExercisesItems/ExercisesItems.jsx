@@ -43,6 +43,9 @@ function ExercisesItems ({programName}) {
                 dayId: params.dayId
             }
         })
+        dispatch({
+            type: 'FETCH_EXERCISE_UPDATE'
+        })
     }, [params.programId, params.weekId, params.dayId])
 
     const handleClickOpen = (week, day) => {

@@ -14,7 +14,6 @@ import { useSelector } from "react-redux";
 
 
 function CheckSkipBox ({exercise}) {
-    console.log('what is exercise for the checkbox', exercise)
     const dispatch = useDispatch()
     const user = useSelector(store => store.user)
     const currentProgram = useSelector(store => store.currentProgram)
@@ -24,7 +23,7 @@ function CheckSkipBox ({exercise}) {
         const exerciseStatus = {
             user_id: user.id,
             program_id: currentProgram.currentProgram.programs_id,
-            exercise_id: exercise.id,
+            program_exercise_id: exercise.programs_exercises_id,
             week: exercise.week,
             day: exercise.day,
             status: event.target.value 
@@ -38,10 +37,10 @@ function CheckSkipBox ({exercise}) {
 
     return (
         <>
-            <FormControl>
+            <FormControl >
                 <RadioGroup row aria-labelledby="demo-row-radio-buttons-group-label"
-                    name="row-radio-buttons-group">
-                    <FormControlLabel value="Completed" control={<Radio />}  onChange = {addExerciseStatus} label="Completed" />
+                    name="row-radio-buttons-group" >
+                    <FormControlLabel value="Completed" control={<Radio required/>}  onChange = {addExerciseStatus} label="Completed" />
                     <FormControlLabel value="Skipped" control={<Radio />}  onChange = {addExerciseStatus} label="Skipped" />
                 </RadioGroup>
             </FormControl>

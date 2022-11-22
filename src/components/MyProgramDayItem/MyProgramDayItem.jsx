@@ -20,9 +20,7 @@ function MyProgramDayItem () {
     let weeks = useSelector(store => store.week)
     const dayComplete = useSelector(store => store.dayComplete)
     const exerciseStatus = useSelector(store => store.exercises)
-    // days = days[days.length -1]
-    console.log('what is week id params on DAY PAGE', params.weekId)
-    console.log('what is program id params on DAY PAGE', params.programId)
+
 
 
     const bull = (
@@ -50,9 +48,7 @@ function MyProgramDayItem () {
     // loop through day complete store
     // loop through day store 
     // if the day == day and the week == week params and complete == 'true', let dayComplete = true
-    console.log('HERES THE CURRENT WEEK', params.weekId)
-    console.log('days to compare', days)
-    console.log('isdaycomplete to compare', dayComplete)
+
     const weekStringToNum = parseInt(params.weekId)
 
     // adding the property '.isComplete = true' to day array if that day is complete

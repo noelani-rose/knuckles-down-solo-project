@@ -51,10 +51,7 @@ function* fetchProgramExercises (action) {
 
 function* updateExerciseStatus (action) {
   try{
-    console.log('whats the payload at saga when updating exercise status', action.payload)
-
     const response = yield axios.put('/api/exercises/update', action.payload, config)
-    
     yield put({ type: 'FETCH_EXERCISE_STATUS', payload: response.data })
   } catch (error) {
     console.log('error updating exercise status', error)
@@ -65,7 +62,6 @@ function* fetchExerciseStatus () {
   try{
     console.log('trying to fetch exercise status in the SAGA')
     const response = yield axios.get ('/api/exercises/update', config)
-
     yield put({type: 'SET_EXERCISE_STATUS', payload: response.data})
   } catch (error) {
     console.log('error getting exercise status in the SAGA', error)
@@ -75,7 +71,6 @@ function* fetchExerciseStatus () {
 
 function* addDayComplete (action) {
   try{
-    console.log('in add day complete function in user programs saga', action.payload)
 
     const response = yield axios.post('/api/user/program/dayComplete', action.payload, config)
     yield put({type: 'FETCH_DAY_COMPLETE'})
@@ -86,14 +81,13 @@ function* addDayComplete (action) {
 
 function* fetchDayComplete () {
   try{
-    console.log('in fetch day complete function in user programs saga')
     const response = yield axios.get('/api/complete', config)
     yield put({type: 'SET_DAY_COMPLETE', payload: response.data})
   } catch (error) {
     console.log('error fetching day complete', error)
   }
 }
-
+// can probably be deleted
 function* addWeekComplete (action) {
   try{
 

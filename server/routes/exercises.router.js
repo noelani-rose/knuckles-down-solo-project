@@ -14,6 +14,7 @@ SELECT
 "exercises"."name", 
 "exercises".rep_scheme, 
 "exercises".notes, 
+"programs_exercises".id as programs_exercises_id,
 "programs_exercises"."week",
 "programs_exercises"."day", 
 user_info.status
@@ -46,15 +47,16 @@ ORDER BY "week", "day", "exercises".id;
 
 
 router.put('/update', (req, res) => {
-  console.log('trying to edit this table in router with req.body', req.body)
-  const sqlParams = [req.user.id, req.body.week, req.body.day, req.body.status, req.body.program_id, req.body.exercise_id]
+  // TODO use programs_exercises_id, instaed of exercises_id
+  console.log('trying to edit this table in router with req.body', req.body, )
+  const sqlParams = [req.user.id, req.body.week, req.body.day, req.body.status , req.body.program_exercise_id]
   const sqlText = 
   `
-  INSERT INTO "user_programs_exercises" ("user_id", "week", "day", "status", "programs_id", "programs_exercises_id")
-  VALUES ($1, $2, $3, $4, $5, $6)
-  ON CONFLICT ("programs_exercises_id")
+  INSERT INTO "user_programs_exercises" ("user_id", "week", "day", "status", "programs_exercises_id")
+  VALUES ($1, $2, $3, $4, $5)
+  ON CONFLICT ON CONSTRAINT one_status_per_user_and_exercise
   DO UPDATE SET "status" = $4
-  WHERE "user_programs_exercises"."user_id" = $1;
+  WHERE "user_programs_exercises"."user_id" = $1 AND "user_programs_exercises"."programs_exercises_id" = $5
   `;
 
   pool.query(sqlText, sqlParams)
@@ -63,6 +65,7 @@ router.put('/update', (req, res) => {
     })
     .catch(error => {
       console.log('error updating table for status in server', error)
+      res.sendStatus(500)
     })
 });
 

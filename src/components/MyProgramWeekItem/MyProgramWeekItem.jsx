@@ -48,8 +48,7 @@ function MyProgramWeekItem() {
         <Typography sx={{ mb: 1.5 }} color="text.secondary">
         {week.isComplete ? (<div>Complete</div>) : (<div>Incomplete</div>)}
         </Typography>       
-                <div>View Days</div>
-
+            <div>View Days</div>
         </CardContent>
         </Card>
         </Box>
