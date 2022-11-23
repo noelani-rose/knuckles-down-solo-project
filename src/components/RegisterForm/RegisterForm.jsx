@@ -48,14 +48,34 @@ function RegisterForm() {
 
   return (
     <form className="formPanel" onSubmit={registerUser}>
-      <h2>Register User</h2>
       {errors.registrationMessage && (
         <h3 className="alert" role="alert">
           {errors.registrationMessage}
         </h3>
       )}
-      <div>
-        <label htmlFor="username">
+      <div className = 'registration-header'>
+      <Box
+          sx={{
+            mx: 'auto',
+            width: 300,
+            p: 2,
+            m: 2,
+            bgcolor: (theme) =>
+              theme.palette.mode === 'dark' ? '#101010' : 'grey.50',
+            color: (theme) =>
+              theme.palette.mode === 'dark' ? 'grey.300' : 'grey.800',
+            border: '1px solid',
+            borderColor: (theme) =>
+              theme.palette.mode === 'dark' ? 'grey.800' : 'grey.300',
+            borderRadius: 2,
+            textAlign: 'center',
+            fontSize: '0.875rem',
+            fontWeight: '700',
+          }}
+        >
+          <h1>Athlete Profile</h1>
+        </Box>
+        {/* <label htmlFor="username">
           Username:
           <input
             type="text"
@@ -64,6 +84,7 @@ function RegisterForm() {
             required
             onChange={(event) => setUsername(event.target.value)}
           />
+
         </label>
       </div>
 
@@ -77,8 +98,24 @@ function RegisterForm() {
             required
             onChange={(event) => setPassword(event.target.value)}
           />
-        </label>
+        </label> */}
+      <FormControl >
+      <Box sx = {{mb: 3}} >
+      <div className='username-input'>
+      <TextField type = "text" id="outlined-basic" label="Username" variant="outlined" 
+      onChange = {(event) => setUsername(event.target.value)}/>
       </div>
+        <div className='password-input'>
+      <Box>
+      <TextField type = "password" id="outlined-basic" label="Password" variant="outlined" 
+      onChange = {(event) => setPassword(event.target.value)} />
+      </Box>
+      </div>
+      </Box>
+      </FormControl>
+      
+      </div>
+ 
 
         <div>
       <FormControl>
@@ -96,21 +133,19 @@ function RegisterForm() {
     </FormControl>
         </div>
       <div>
-      <Box
+    <Box
       component="form"
       sx={{
-        '& > :not(style)': { m: 0.5, width: '15ch', height: '10ch' },
+        '& > :not(style)': { m: 0.5, width: '17ch', height: '10ch' },
       }}
       noValidate
       autoComplete="off"
     >
-      <FormLabel id="experience-level">Current PRs in lbs (optional):</FormLabel><br/>
+      <FormLabel id="experience-level">Current PRs in lbs:</FormLabel><br/>
       <TextField type = "number" id="outlined-basic" label="Snatch" variant="standard" onChange = {(event) => setPersonalRecords({...personalRecords, snatch_pr: event.target.value})}/>
       <TextField type = "number" id="outlined-basic" label="Clean and Jerk" variant="standard" onChange = {(event) => setPersonalRecords({...personalRecords, cleanjerk_pr: event.target.value})} />
       <TextField type = "number" id="outlined-basic" label="Back Squat" variant="standard" onChange = {(event) => setPersonalRecords({...personalRecords, frontsquat_pr: event.target.value})}/>
       <TextField type = "number" id="outlined-basic" label="Front Squat" variant="standard" onChange = {(event) => setPersonalRecords({...personalRecords, backsquat_pr: event.target.value})}/>
-
-
     </Box>
 
       </div>

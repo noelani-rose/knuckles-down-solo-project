@@ -118,32 +118,32 @@ function App() {
           </Route>
 
 
-
-          <Route exact path='/programs'>
+          
+          <ProtectedRoute exact path='/programs'>
             <ProgramsList/>
-          </Route>
+          </ProtectedRoute>
 
 
-          <Route exact path = '/journal'>
+          <ProtectedRoute exact path = '/journal'>
             <Journal/>
-          </Route>
+          </ProtectedRoute>
 
-          <Route exact path = '/progress'>
+          <ProtectedRoute exact path = '/progress'>
             <Progress/>
-          </Route>
+          </ProtectedRoute>
 
 
-          <Route exact path = '/program/:programId'>
+          <ProtectedRoute exact path = '/program/:programId'>
             <MyProgram/>
-          </Route>
+          </ProtectedRoute>
 
-          <Route exact path = '/program/:programId/week/:weekId'>
+          <ProtectedRoute exact path = '/program/:programId/week/:weekId'>
             <MyProgramDay />
-          </Route>
+          </ProtectedRoute>
 
-          <Route exact path = '/program/:programId/week/:weekId/day/:dayId'>
+          <ProtectedRoute exact path = '/program/:programId/week/:weekId/day/:dayId'>
             <Exercises />
-          </Route>
+          </ProtectedRoute>
 
           {/* If none of the other routes matched, we will show a 404. */}
           <Route>

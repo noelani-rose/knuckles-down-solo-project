@@ -126,3 +126,15 @@ padding-left: 15px;
   padding: 6px;
 
 }
+
+.registration-header{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.formPanel {
+  display: grid;
+  justify-content: center;
+  text-align: center;
+}
